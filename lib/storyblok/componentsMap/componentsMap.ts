@@ -20,7 +20,6 @@ export const sbRootComponents: SbComponentsMap = {
   'module-button': ModuleButton,
   'module-icon-grid': ModuleIconGrid,
   'illustration-text-section': IllustrationTextSection,
-  'logos-section': LogosSection,
   spacing: Spacing,
   cta: CTA,
   /** Only for example cases, if you don't need it you can freely remove it */

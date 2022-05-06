@@ -4,19 +4,13 @@ import { SbEditableResult } from '@storyblok/storyblok-editable';
 
 
 export type SbComponentName =
-  | 'report-point-form'
-  | 'header-basic'
   | 'header-animation'
   | 'section-title'
   | 'small-illustration-text-grid'
   | 'module-text-line-separator'
   | 'module-button'
   | 'module-icon-grid'
-  | 'install-app'
-  | 'header-carousel'
   | 'illustration-text-section'
-  | 'logos-section'
-  | 'contact-form'
   | 'cta'
   | 'spacing'
   | 'my-new-module';
