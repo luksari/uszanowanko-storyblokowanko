@@ -1,0 +1,28 @@
+import { HeaderAnimation } from 'sbComponents/headerAnimation/HeaderAnimation';
+import { SmallIllustrationTextGrid } from 'sbComponents/smallIllustrationTextGrid/SmallIllustrationTextGrid';
+import { SectionTitle } from 'sbComponents/sectionTitle/SectionTitle';
+import { SbComponentsMap } from 'lib/storyblok/storyblok.types';
+import { ModuleTextLineSeparator } from 'sbComponents/moduleTextLineSeparator/ModuleTextLineSeparator';
+import { ModuleButton } from 'sbComponents/moduleButton/ModuleButton';
+import { ModuleIconGrid } from 'sbComponents/moduleIconGrid/ModuleIconGrid';
+import { IllustrationTextSection } from 'sbComponents/illustrationTextSection/IllustrationTextSection';
+import { LogosSection } from 'sbComponents/logosSection/LogosSection';
+import { CTA } from 'sbComponents/cta/CTA';
+import { Spacing } from 'sbComponents/spacing/Spacing';
+import { MyNewModule } from 'sbComponents/myNewModule/MyNewModule';
+
+/** This is the map of Storyblok technical names with corresponding React component */
+export const sbRootComponents: SbComponentsMap = {
+  'header-animation': HeaderAnimation,
+  'section-title': SectionTitle,
+  'small-illustration-text-grid': SmallIllustrationTextGrid,
+  'module-text-line-separator': ModuleTextLineSeparator,
+  'module-button': ModuleButton,
+  'module-icon-grid': ModuleIconGrid,
+  'illustration-text-section': IllustrationTextSection,
+  'logos-section': LogosSection,
+  spacing: Spacing,
+  cta: CTA,
+  /** Only for example cases, if you don't need it you can freely remove it */
+  'my-new-module': MyNewModule,
+};
