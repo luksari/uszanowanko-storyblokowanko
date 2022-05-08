@@ -1,18 +1,18 @@
 import React from 'react';
 import { Helmet as RHHelmet } from 'react-helmet';
+import { useRouter } from 'next/router';
 
 import { useBuildMode } from '@/hooks/useBuildMode/useBuildMode';
 import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 import { HelmetProps } from '@/components/helmet/Helmet.types';
 import { storyblokToi18nMap } from '@/i18n/i18n.utils';
-import {SbLanguage} from "@/lib/storyblok/storyblok.types";
-import {useRouter} from "next/router";
+import { SbLanguage } from '@/lib/storyblok/storyblok.types';
 
-export const Helmet = ({  }: HelmetProps) => {
+export const Helmet = ({}: HelmetProps) => {
   const { isPreview } = useBuildMode();
   const { story } = useStoryblokContext();
   const seo = story?.content?.seo?.[0];
-  const url = `${process.env.APP_BASE_URL}{${useRouter().pathname}}`
+  const url = `${process.env.APP_BASE_URL}{${useRouter().pathname}}`;
 
   if (!seo) {
     return null;

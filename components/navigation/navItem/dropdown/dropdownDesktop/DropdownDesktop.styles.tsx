@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-
 import Arrow from 'assets/svg/arrow-menu.svg';
 
 export const WrapperStyled = styled.div<{

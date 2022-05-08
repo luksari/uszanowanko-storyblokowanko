@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import { LocaleDropdown } from 'components/navigation/localeDropdown/LocaleDropdown';
 import { useTranslations } from 'hooks/useTranslations/useTranslations';
+import { useBodyClass } from '@/hooks/useBodyClass/useBodyClass';
 
 import {
   WrapperStyled,
@@ -15,7 +16,6 @@ import {
   ActionsWrapperStyled,
   ListWrapperStyled,
 } from './Navigation.styles';
-import {useBodyClass} from "@/hooks/useBodyClass/useBodyClass";
 
 export const Navigation = () => {
   const { t } = useTranslations();
@@ -26,14 +26,10 @@ export const Navigation = () => {
 
   useBodyClass({ condition: isExpanded, className: 'overflow-hidden' });
 
-
   return (
     <WrapperStyled $isExpanded={isExpanded}>
       <ContainerStyled>
-        <BurgerStyled
-          aria-label={isExpanded ? 'Zwiń' : 'Rozwiń'}
-          onClick={toggleIsExpanded}
-        >
+        <BurgerStyled aria-label={isExpanded ? 'Zwiń' : 'Rozwiń'} onClick={toggleIsExpanded}>
           <BurgerIconStyled />
         </BurgerStyled>
         <LogoLinkStyled href={'/'} aria-label={'Uszanowanko Storyblokowanko logo'}>

@@ -2,7 +2,6 @@ import { StoryData } from 'storyblok-js-client';
 import { ComponentType } from 'react';
 import { SbEditableResult } from '@storyblok/storyblok-editable';
 
-
 export type SbComponentName =
   | 'header-animation'
   | 'section-title'
@@ -41,7 +40,7 @@ export type SbEditableComponent<
 } & SbEditableResult;
 
 export enum SbLanguage {
-  Pl  = 'default',
+  Pl = 'default',
   Es = 'es-es',
   En = 'en-gb',
 }

@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-
 export const WrapperStyled = styled.nav<{ $isExpanded: boolean }>`
   position: fixed;
   display: flex;
@@ -202,7 +201,6 @@ export const ActionsWrapperStyled = styled.div`
     margin-left: auto;
   }
 `;
-
 
 export const LocaleItemStyled = styled.li`
   display: flex;

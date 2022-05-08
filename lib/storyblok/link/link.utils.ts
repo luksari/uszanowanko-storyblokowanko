@@ -1,5 +1,5 @@
-import { LinkType, SbRichTextLink, SbTargetLink } from 'lib/storyblok/storyblok.types';
-import { I18nLocale, SbLocale } from 'context/localeContext/LocaleContext.types';
+import { LinkType, SbLanguage, SbRichTextLink, SbTargetLink } from 'lib/storyblok/storyblok.types';
+import { I18nLocale } from 'context/localeContext/LocaleContext.types';
 
 const baseURL = process.env.BASE_APP_URL;
 const landingsRoot = process.env.APP_CATALOG;
@@ -54,7 +54,7 @@ export const isAnchorLink = (link: SbRichTextLink | SbTargetLink) => {
   return !!link.anchor;
 };
 
-export const buildTargetLinkHref = (link: SbTargetLink, locale: SbLocale): string => {
+export const buildTargetLinkHref = (link: SbTargetLink, locale: SbLanguage): string => {
   let href = '';
 
   if (isInternalStoryblokTargetLink(link)) {
@@ -72,7 +72,7 @@ export const buildTargetLinkHref = (link: SbTargetLink, locale: SbLocale): strin
   return href;
 };
 
-export const buildRichTextLinkHref = (link: SbRichTextLink, locale: SbLocale): string | undefined => {
+export const buildRichTextLinkHref = (link: SbRichTextLink, locale: SbLanguage): string | undefined => {
   if (!landingsRoot || !link.story?.full_slug || !link.href) {
     return undefined;
   }
@@ -94,7 +94,7 @@ export const buildRichTextLinkHref = (link: SbRichTextLink, locale: SbLocale): s
   return href;
 };
 
-export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale: SbLocale) => {
+export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale: SbLanguage) => {
   if (!fullSlug) {
     return null;
   }
@@ -104,7 +104,7 @@ export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale:
 
   let pathname = fullSlug;
 
-  if (locale !== SbLocale.Pl) {
+  if (locale !== SbLanguage.Pl) {
     pathname = pathname.replace(regExpLocale, '');
   }
 

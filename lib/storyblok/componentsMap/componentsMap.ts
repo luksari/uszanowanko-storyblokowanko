@@ -6,7 +6,6 @@ import { ModuleTextLineSeparator } from 'sbComponents/moduleTextLineSeparator/Mo
 import { ModuleButton } from 'sbComponents/moduleButton/ModuleButton';
 import { ModuleIconGrid } from 'sbComponents/moduleIconGrid/ModuleIconGrid';
 import { IllustrationTextSection } from 'sbComponents/illustrationTextSection/IllustrationTextSection';
-import { LogosSection } from 'sbComponents/logosSection/LogosSection';
 import { CTA } from 'sbComponents/cta/CTA';
 import { Spacing } from 'sbComponents/spacing/Spacing';
 import { MyNewModule } from 'sbComponents/myNewModule/MyNewModule';

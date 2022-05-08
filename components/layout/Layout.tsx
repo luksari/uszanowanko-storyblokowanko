@@ -10,7 +10,7 @@ import { ContentStyled, LayoutWrapperStyled } from './Layout.styles';
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Helmet/>
+      <Helmet />
       <LayoutWrapperStyled>
         <Navigation />
         <ContentStyled>{children}</ContentStyled>

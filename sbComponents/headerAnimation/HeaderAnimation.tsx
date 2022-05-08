@@ -60,7 +60,6 @@ export const HeaderAnimation = ({ blok, ...rest }: HeaderAnimationProps) => {
           )}
         </ContentWrapperStyled>
       </ContainerStyled>
-      <MaskStyled />
     </WrapperStyled>
   );
 };

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-
 import ExpandMoreIcon from 'assets/svg/expand-more-icon.svg';
 
 export const ExpandMoreIconStyled = styled(ExpandMoreIcon)`
