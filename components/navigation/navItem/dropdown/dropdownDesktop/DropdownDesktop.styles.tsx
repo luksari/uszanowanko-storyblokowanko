@@ -22,7 +22,7 @@ export const WrapperStyled = styled.div<{
 
   border-radius: 8px;
 
-  background-color: ${({ theme }) => theme.colors.mrWhite};
+  background-color: ${({ theme }) => theme.colors.white};
 
   box-shadow: 0 2px 32px 0 rgb(6 83 146 / 8%), 0 0 0 1px #e7eff6;
 

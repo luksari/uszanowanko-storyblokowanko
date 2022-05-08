@@ -1,14 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { useTranslations } from 'hooks/useTranslations/useTranslations';
 
 import {
-  CopyTextStyled,
   WrapperStyled,
-  LogoLinkStyled,
   SectionStyled,
   ContainerStyled,
   SocialSection,
+    CopyTextStyled
 } from './Footer.styles';
 
 export const Footer = () => {
@@ -17,10 +16,6 @@ export const Footer = () => {
     <WrapperStyled>
       <ContainerStyled>
         <SectionStyled>
-          <h2>
-            <LogoLinkStyled href={'/'}>
-            </LogoLinkStyled>
-          </h2>
           <CopyTextStyled>Uszanowanko Programowanko &copy; {new Date().getFullYear()}</CopyTextStyled>
         </SectionStyled>
         <SocialSection>

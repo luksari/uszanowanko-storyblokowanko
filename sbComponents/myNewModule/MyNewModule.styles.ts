@@ -12,5 +12,5 @@ export const WrapperStyled = styled.section`
 export const ContainerStyled = styled.div`
   ${container.lg}
 
-  color: ${({ theme }) => theme.colors.mrWhite};
+  color: ${({ theme }) => theme.colors.white};
 `;

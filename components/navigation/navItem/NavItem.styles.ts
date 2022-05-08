@@ -24,7 +24,7 @@ export const IconStyled = styled.div<{ $isExpanded: boolean }>`
 
       ${ExpandMoreIconStyled} {
         path {
-          fill: ${theme.colors.linkBlueLight};
+          fill: ${theme.colors.linkBlue};
         }
       }
     `}
@@ -45,7 +45,7 @@ export const WrapperStyled = styled.li<{ $isExpanded: boolean }>`
     $isExpanded &&
     css`
       & > button {
-        color: ${theme.colors.linkBlueLight};
+        color: ${theme.colors.linkBlue};
       }
     `}
 
@@ -62,7 +62,7 @@ export const WrapperStyled = styled.li<{ $isExpanded: boolean }>`
     align-items: center;
 
     &:hover > button {
-      color: ${({ theme }) => theme.colors.linkBlueLight};
+      color: ${({ theme }) => theme.colors.linkBlue};
     }
 
     &:first-of-type {
@@ -95,7 +95,7 @@ export const ButtonStyled = styled.button`
 
   ${({ theme }) => css`
     background-color: transparent;
-    color: ${theme.colors.furgonetkaDarkGrey};
+    color: ${theme.colors.darkGray};
 
     ${({ theme }) => theme.breakpoints.mq.min.md} {
       padding: 0;
@@ -104,7 +104,7 @@ export const ButtonStyled = styled.button`
 
       &:hover,
       &:focus {
-        color: ${theme.colors.linkBlueLight};
+        color: ${theme.colors.linkBlue};
       }
     }
   `}

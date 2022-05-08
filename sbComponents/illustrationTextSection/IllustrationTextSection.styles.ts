@@ -68,7 +68,7 @@ export const ContainerStyled = styled.div<{ $imgPosition: ImagePosition }>`
 export const WrapperStyled = styled.section<WithBaseColor>`
   display: flex;
   align-items: center;
-  background: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.mrWhite};
+  background: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.white};
 `;
 
 export const TitleStyled = styled.div<WithBaseColor>`

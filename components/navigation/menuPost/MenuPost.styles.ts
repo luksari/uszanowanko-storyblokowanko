@@ -22,7 +22,7 @@ export const LinkStyled = styled.a`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.linkBlueLight};
+    color: ${({ theme }) => theme.colors.linkBlue};
   }
 `;
 
