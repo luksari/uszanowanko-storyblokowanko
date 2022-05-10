@@ -1,18 +1,15 @@
-import {SbLanguage, SbPageModel} from "@/lib/storyblok/storyblok.types";
-import {AlternativeSlugs} from "@/context/localeContext/LocaleContext.types";
-import {ParsedUrlQuery} from "querystring";
+import { ParsedUrlQuery } from 'querystring';
+
+import { SbLanguage, SbPageModel } from '@/lib/storyblok/storyblok.types';
+import { AlternativeSlugs } from '@/context/localeContext/LocaleContext.types';
 
 export type PageProps = {
-    story: SbPageModel;
-    lang: SbLanguage;
-    key: string;
-    alternativeSlugs?: AlternativeSlugs;
+  story: SbPageModel;
+  lang: SbLanguage;
+  key: number;
+  alternativeSlugs?: AlternativeSlugs;
 };
 
 export interface PageParams extends ParsedUrlQuery {
-    slug: string[];
-    lang: SbLanguage
-}
-export type PagePaths = {
-
+  slug: string[];
 }

@@ -1,15 +1,21 @@
-import { StoryblokResult } from 'storyblok-js-client';
+import { AlternateObject } from 'storyblok-js-client';
 
 import { SbPageModel } from '@/lib/storyblok/storyblok.types';
 
-export type GetStoriesRes = StoryblokResult & {
+export type GetStoryRes = {
   data: {
     cv: number;
     rels: unknown[];
-    links: unknown[];
     story: SbPageModel;
   };
   perPage: number;
   total: number;
   headers: any;
+};
+
+export type GetLinksRes = {
+  data: {
+    cv: number;
+    links: Record<string, AlternateObject>;
+  };
 };

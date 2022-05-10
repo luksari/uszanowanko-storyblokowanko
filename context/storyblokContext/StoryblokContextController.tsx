@@ -8,13 +8,16 @@ import { useBuildMode } from 'hooks/useBuildMode/useBuildMode';
 import { StoryblokContext } from './StoryblokContext';
 import { StoryblokContextState } from './StoryblokContext.types';
 
-export const sbClient = new StoryblokClient({
-  accessToken: process.env.NEXT_SB_PREVIEW_TOKEN,
-  cache: {
-    clear: 'auto',
-    type: 'memory',
+export const sbClient = new StoryblokClient(
+  {
+    accessToken: process.env.NEXT_SB_PREVIEW_TOKEN,
+    cache: {
+      clear: 'auto',
+      type: 'memory',
+    },
   },
-});
+  process.env.NEXT_STORYBLOK_API,
+);
 
 export const StoryblokContextController = ({ children }: { children: ReactNode }) => {
   const [story, setStory] = useState<SbPageModel | null>(null);
