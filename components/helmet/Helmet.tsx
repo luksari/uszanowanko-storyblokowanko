@@ -12,7 +12,7 @@ export const Helmet = ({}: HelmetProps) => {
   const { isPreview } = useBuildMode();
   const { story } = useStoryblokContext();
   const seo = story?.content?.seo?.[0];
-  const url = `${process.env.APP_BASE_URL}{${useRouter().pathname}}`;
+  const url = `${process.env.NEXT_APP_BASE_URL}{${useRouter().pathname}}`;
 
   if (!seo) {
     return null;

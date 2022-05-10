@@ -1,8 +1,8 @@
 import { LinkType, SbLanguage, SbRichTextLink, SbTargetLink } from 'lib/storyblok/storyblok.types';
 import { I18nLocale } from 'context/localeContext/LocaleContext.types';
 
-const baseURL = process.env.BASE_APP_URL;
-const landingsRoot = process.env.APP_CATALOG;
+const baseURL = process.env.NEXT_APP_BASE_URL;
+const landingsRoot = process.env.NEXT_APP_CATALOG;
 
 export const isInternalStoryblokTargetLink = (link: SbTargetLink) => {
   if (!landingsRoot) {

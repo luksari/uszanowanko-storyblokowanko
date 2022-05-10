@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useMemo, useState} from 'react';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import StoryblokClient from 'storyblok-js-client';
 import { parse } from 'query-string';
 
@@ -9,7 +9,7 @@ import { StoryblokContext } from './StoryblokContext';
 import { StoryblokContextState } from './StoryblokContext.types';
 
 export const sbClient = new StoryblokClient({
-  accessToken: process.env.SB_PREVIEW_TOKEN,
+  accessToken: process.env.NEXT_SB_PREVIEW_TOKEN,
   cache: {
     clear: 'auto',
     type: 'memory',
@@ -39,11 +39,12 @@ export const StoryblokContextController = ({ children }: { children: ReactNode }
 
       storyblokInstance.on(['enterEditmode'], (event?: StoryblokEventPayload) => {
         // loading the draft version on initial view of the page
-        sbClient.get(`cdn/stories/${event?.storyId}`, {
-          version: 'draft',
-          resolve_links: 'url',
-          language,
-        })
+        sbClient
+          .get(`cdn/stories/${event?.storyId}`, {
+            version: 'draft',
+            resolve_links: 'url',
+            language,
+          })
           .then(({ data }) => {
             if (data.story) {
               setStory(data.story);
@@ -80,16 +81,18 @@ export const StoryblokContextController = ({ children }: { children: ReactNode }
     if (location.search.includes('_storyblok') && isPreview) {
       const params = parse(location.search);
 
-      sbClient.get(`cdn/stories/${params._storyblok}`, {
-        version: 'draft',
-        resolve_links: 'url',
-        language: params._storyblok_lang,
-      }).then(({ data }) => {
-        if (data.story) {
-          setStory(data.story);
-          setLanguage(params._storyblok_lang as string);
-        }
-      });
+      sbClient
+        .get(`cdn/stories/${params._storyblok}`, {
+          version: 'draft',
+          resolve_links: 'url',
+          language: params._storyblok_lang,
+        })
+        .then(({ data }) => {
+          if (data.story) {
+            setStory(data.story);
+            setLanguage(params._storyblok_lang as string);
+          }
+        });
     }
   }, [isPreview, setStory]);
 

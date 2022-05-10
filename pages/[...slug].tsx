@@ -3,6 +3,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { sbClient } from '@/context/storyblokContext/StoryblokContextController';
 import { PageParams, PageProps } from '@/types/page';
 import { AppPage } from '@/templates/AppPage';
+import { getStories } from '@/services/storyblok/getStories';
+import { SbLanguage } from '@/lib/storyblok/storyblok.types';
 
 const SluggedPage = (props: PageProps) => {
   return <AppPage ctx={props} />;
@@ -14,11 +16,8 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async (ctx)
   const { slug } = ctx.params as PageParams;
   const joinedSlug: string = slug ? slug.join('/') : 'home';
 
-  const sbParams = {
-    version: process.env.STORYBLOK_VERSION,
-  };
-
-  const { data } = await sbClient.get(`cdn/stories/${joinedSlug}`, sbParams);
+  const { data } = await getStories(joinedSlug, SbLanguage.Pl);
+  console.log(data);
 
   return {
     props: {
