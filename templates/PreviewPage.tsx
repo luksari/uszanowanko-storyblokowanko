@@ -13,4 +13,3 @@ export const PreviewPage = () => {
 
   return <SbPage story={story} editable={sbEditable(story.content)} />;
 };
-

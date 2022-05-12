@@ -2,8 +2,9 @@ import { StoryData } from 'storyblok-js-client';
 import { ComponentType } from 'react';
 import { SbEditableResult } from '@storyblok/storyblok-editable';
 
+/** @SEE The list of defined components in storyblok */
 export type SbComponentName =
-  | 'header-animation'
+  | 'header-basic'
   | 'section-title'
   | 'small-illustration-text-grid'
   | 'module-text-line-separator'
@@ -41,8 +42,8 @@ export type SbEditableComponent<
 
 export enum SbLanguage {
   Pl = 'default',
-  Es = 'es-es',
-  En = 'en-gb',
+  Es = 'es',
+  En = 'en',
 }
 
 export type SbSEO = {

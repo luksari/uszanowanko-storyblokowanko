@@ -1,18 +1,18 @@
-import { HeaderAnimation } from 'sbComponents/headerAnimation/HeaderAnimation';
-import { SmallIllustrationTextGrid } from 'sbComponents/smallIllustrationTextGrid/SmallIllustrationTextGrid';
-import { SectionTitle } from 'sbComponents/sectionTitle/SectionTitle';
-import { SbComponentsMap } from 'lib/storyblok/storyblok.types';
-import { ModuleTextLineSeparator } from 'sbComponents/moduleTextLineSeparator/ModuleTextLineSeparator';
-import { ModuleButton } from 'sbComponents/moduleButton/ModuleButton';
-import { ModuleIconGrid } from 'sbComponents/moduleIconGrid/ModuleIconGrid';
-import { IllustrationTextSection } from 'sbComponents/illustrationTextSection/IllustrationTextSection';
-import { CTA } from 'sbComponents/cta/CTA';
-import { Spacing } from 'sbComponents/spacing/Spacing';
-import { MyNewModule } from 'sbComponents/myNewModule/MyNewModule';
+import { SmallIllustrationTextGrid } from '@/sbComponents/smallIllustrationTextGrid/SmallIllustrationTextGrid';
+import { SectionTitle } from '@/sbComponents/sectionTitle/SectionTitle';
+import { SbComponentsMap } from '@/lib/storyblok/storyblok.types';
+import { ModuleTextLineSeparator } from '@/sbComponents/moduleTextLineSeparator/ModuleTextLineSeparator';
+import { ModuleButton } from '@/sbComponents/moduleButton/ModuleButton';
+import { ModuleIconGrid } from '@/sbComponents/moduleIconGrid/ModuleIconGrid';
+import { IllustrationTextSection } from '@/sbComponents/illustrationTextSection/IllustrationTextSection';
+import { CTA } from '@/sbComponents/cta/CTA';
+import { Spacing } from '@/sbComponents/spacing/Spacing';
+import { MyNewModule } from '@/sbComponents/myNewModule/MyNewModule';
+import { HeaderBasic } from '@/sbComponents/headerBasic/HeaderBasic';
 
 /** This is the map of Storyblok technical names with corresponding React component */
 export const sbRootComponents: SbComponentsMap = {
-  'header-animation': HeaderAnimation,
+  'header-basic': HeaderBasic,
   'section-title': SectionTitle,
   'small-illustration-text-grid': SmallIllustrationTextGrid,
   'module-text-line-separator': ModuleTextLineSeparator,

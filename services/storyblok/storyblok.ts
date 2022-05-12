@@ -2,9 +2,9 @@ import { sbClient } from '@/context/storyblokContext/StoryblokContextController'
 import { SbLanguage } from '@/lib/storyblok/storyblok.types';
 import { GetLinksRes, GetStoryRes } from '@/services/storyblok/storyblok.types';
 
-export const getStory = async (slug: string, language: SbLanguage): Promise<GetStoryRes> => {
+export const getStory = async (slug: string, language = SbLanguage.Pl): Promise<GetStoryRes> => {
   const sbParams = {
-    version: process.env.NEXT_SB_VERSION,
+    version: process.env.NEXT_PUBLIC_SB_VERSION,
     resolve_links: 'url',
     language,
   };
@@ -14,7 +14,7 @@ export const getStory = async (slug: string, language: SbLanguage): Promise<GetS
 
 export const getLinks = async (): Promise<GetLinksRes> => {
   const sbParams = {
-    version: process.env.NEXT_SB_VERSION,
+    version: process.env.NEXT_PUBLIC_SB_VERSION,
   };
 
   return await sbClient.get(`cdn/links`, sbParams);

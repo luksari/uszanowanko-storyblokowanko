@@ -2,17 +2,15 @@ import React from 'react';
 import { Helmet as RHHelmet } from 'react-helmet';
 import { useRouter } from 'next/router';
 
-import { useBuildMode } from '@/hooks/useBuildMode/useBuildMode';
 import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 import { HelmetProps } from '@/components/helmet/Helmet.types';
 import { storyblokToi18nMap } from '@/i18n/i18n.utils';
 import { SbLanguage } from '@/lib/storyblok/storyblok.types';
 
 export const Helmet = ({}: HelmetProps) => {
-  const { isPreview } = useBuildMode();
   const { story } = useStoryblokContext();
   const seo = story?.content?.seo?.[0];
-  const url = `${process.env.NEXT_APP_BASE_URL}{${useRouter().pathname}}`;
+  const url = `${process.env.NEXT_PUBLIC_APP_BASE_URL}{${useRouter().pathname}}`;
 
   if (!seo) {
     return null;
@@ -24,14 +22,12 @@ export const Helmet = ({}: HelmetProps) => {
 
   return (
     <RHHelmet title={`Uszanowanko Storyblokowanko - ${metaplugin.title}`}>
-      {isPreview && (
-        <script
-          async
-          src={'https://app.storyblok.com/f/storyblok-v2-latest.js'}
-          type={'text/javascript'}
-          id={'storyblokBridge'}
-        />
-      )}
+      <script
+        async
+        src={'https://app.storyblok.com/f/storyblok-v2-latest.js'}
+        type={'text/javascript'}
+        id={'storyblokBridge'}
+      />
       <title>Uszanowanko Storyblokowanko - ${metaplugin.title}</title>
       <link rel={'canonical'} href={url} />
       <meta property={'og:url'} content={url} />

@@ -3,27 +3,25 @@ import StoryblokClient from 'storyblok-js-client';
 import { parse } from 'query-string';
 
 import { SbPageModel } from 'lib/storyblok/storyblok.types';
-import { useBuildMode } from 'hooks/useBuildMode/useBuildMode';
 
 import { StoryblokContext } from './StoryblokContext';
 import { StoryblokContextState } from './StoryblokContext.types';
 
 export const sbClient = new StoryblokClient(
   {
-    accessToken: process.env.NEXT_SB_PREVIEW_TOKEN,
+    accessToken: process.env.NEXT_PUBLIC_SB_PREVIEW_TOKEN,
     cache: {
       clear: 'auto',
       type: 'memory',
     },
   },
-  process.env.NEXT_STORYBLOK_API,
+  process.env.NEXT_PUBLIC_STORYBLOK_API,
 );
 
 export const StoryblokContextController = ({ children }: { children: ReactNode }) => {
   const [story, setStory] = useState<SbPageModel | null>(null);
   const [language, setLanguage] = useState<string | null>(null);
   const [isInitial, setIsInitial] = useState<boolean>(true);
-  const { isPreview } = useBuildMode();
 
   // see https://www.storyblok.com/docs/Guides/storyblok-latest-js
   const initEventListeners = () => {
@@ -81,7 +79,7 @@ export const StoryblokContextController = ({ children }: { children: ReactNode }
   };
 
   useEffect(() => {
-    if (location.search.includes('_storyblok') && isPreview) {
+    if (location.search.includes('_storyblok')) {
       const params = parse(location.search);
 
       sbClient
@@ -97,14 +95,14 @@ export const StoryblokContextController = ({ children }: { children: ReactNode }
           }
         });
     }
-  }, [isPreview, setStory]);
+  }, [setStory]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !language || !isInitial) {
       return;
     }
     // load bridge only inside the storyblok editor
-    if (window.location.search.includes('_storyblok') && isPreview) {
+    if (window.location.search.includes('_storyblok')) {
       // first load the bridge and then attach the events
       addBridge(initEventListeners);
       setIsInitial(false);
