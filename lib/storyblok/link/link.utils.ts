@@ -1,5 +1,7 @@
-import { LinkType, SbLanguage, SbRichTextLink, SbTargetLink } from 'lib/storyblok/storyblok.types';
-import { I18nLocale } from 'context/localeContext/LocaleContext.types';
+import { LinkProps } from 'next/link';
+
+import { LinkType, SbRichTextLink, SbTargetLink } from 'lib/storyblok/storyblok.types';
+import { I18nLanguage } from 'context/localeContext/LocaleContext.types';
 
 const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL;
 const landingsRoot = process.env.NEXT_PUBLIC_APP_CATALOG;
@@ -54,7 +56,7 @@ export const isAnchorLink = (link: SbRichTextLink | SbTargetLink) => {
   return !!link.anchor;
 };
 
-export const buildTargetLinkHref = (link: SbTargetLink, locale: SbLanguage): string => {
+export const buildTargetLinkHref = (link: SbTargetLink, locale: I18nLanguage): string => {
   let href = '';
 
   if (isInternalStoryblokTargetLink(link)) {
@@ -72,7 +74,7 @@ export const buildTargetLinkHref = (link: SbTargetLink, locale: SbLanguage): str
   return href;
 };
 
-export const buildRichTextLinkHref = (link: SbRichTextLink, locale: SbLanguage): string | undefined => {
+export const buildRichTextLinkHref = (link: SbRichTextLink, locale: I18nLanguage): string | undefined => {
   if (!landingsRoot || !link.story?.full_slug || !link.href) {
     return undefined;
   }
@@ -94,7 +96,7 @@ export const buildRichTextLinkHref = (link: SbRichTextLink, locale: SbLanguage):
   return href;
 };
 
-export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale: SbLanguage) => {
+export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale: I18nLanguage) => {
   if (!fullSlug) {
     return null;
   }
@@ -104,7 +106,7 @@ export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale:
 
   let pathname = fullSlug;
 
-  if (locale !== SbLanguage.Pl) {
+  if (locale !== I18nLanguage.Pl) {
     pathname = pathname.replace(regExpLocale, '');
   }
 
@@ -113,5 +115,5 @@ export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale:
   return pathname;
 };
 
-export const getPathPrefixedWithLocale = (langCode: I18nLocale, path: string) =>
-  langCode === I18nLocale.Pl ? path : `/${langCode}${path}`;
+export const getPathPrefixedWithLocale = (langCode: I18nLanguage, path: LinkProps['href']) =>
+  langCode === I18nLanguage.Pl ? (path as string) : `/${langCode}${path}`;

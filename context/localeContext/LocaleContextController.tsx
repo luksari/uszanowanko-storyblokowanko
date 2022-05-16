@@ -1,14 +1,21 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { LocaleContext } from 'context/localeContext/LocaleContext';
 import {
+  I18nLanguage,
   LocaleContextControllerProps,
-  LocaleContextState
+  LocaleContextDispatch,
+  LocaleContextState,
 } from 'context/localeContext/LocaleContext.types';
 
+export const LocaleContextController = ({ children }: LocaleContextControllerProps) => {
+  const [alternativeSlugs, setAlternativeSlugs] = useState<LocaleContextState['alternativeSlugs']>(null);
+  const [locale, setLocale] = useState<LocaleContextState['locale']>(I18nLanguage.Pl);
 
-export const LocaleContextController = ({ children, locale, alternativeSlugs }: LocaleContextControllerProps) => {
-  const ctxValue = useMemo<LocaleContextState>(() => ({ locale, alternativeSlugs }), [locale, alternativeSlugs]);
+  const ctxValue = useMemo<LocaleContextState & LocaleContextDispatch>(
+    () => ({ locale, alternativeSlugs, setLocale, setAltSlugs: setAlternativeSlugs }),
+    [locale, alternativeSlugs],
+  );
 
   return <LocaleContext.Provider value={ctxValue}>{children}</LocaleContext.Provider>;
 };

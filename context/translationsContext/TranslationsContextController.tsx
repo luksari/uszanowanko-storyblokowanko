@@ -1,19 +1,19 @@
-import React, { FC, useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 import { TranslationsContext } from 'context/translationsContext/TranslationsContext';
 import {
   TranslatingFunction,
   Translations,
-  TranslationsContextControllerProps
+  TranslationsContextControllerProps,
 } from 'context/translationsContext/TranslationsContext.types';
 import { useLocale } from 'hooks/useLocale/useLocale';
 import pl from 'i18n/translations/default.json';
-import {SbLanguage} from "@/lib/storyblok/storyblok.types";
+import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 
-const resources: Record<SbLanguage, Translations> = {
-  [SbLanguage.En]: pl,
-  [SbLanguage.Es]: pl,
-  [SbLanguage.Pl]: pl,
+const resources: Record<I18nLanguage, Translations> = {
+  [I18nLanguage.En]: pl,
+  [I18nLanguage.Es]: pl,
+  [I18nLanguage.Pl]: pl,
 };
 
 export const TranslationsContextController = ({ children }: TranslationsContextControllerProps) => {

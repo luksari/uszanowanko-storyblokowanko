@@ -1,18 +1,22 @@
-import {ReactNode} from "react";
-import {SbLanguage} from "@/lib/storyblok/storyblok.types";
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export type LocaleContextState = {
-  locale: SbLanguage;
+  locale: I18nLanguage;
   alternativeSlugs: AlternativeSlugs | null;
 };
 
-export type AlternativeSlugs = Record<SbLanguage, string>;
+export type LocaleContextDispatch = {
+  setLocale: Dispatch<SetStateAction<I18nLanguage>>;
+  setAltSlugs: Dispatch<SetStateAction<AlternativeSlugs | null>>;
+};
+
+export type AlternativeSlugs = Record<I18nLanguage, string>;
 
 export type LocaleContextControllerProps = {
   children: ReactNode;
-} & LocaleContextState;
+};
 
-export enum I18nLocale {
+export enum I18nLanguage {
   Pl = 'pl',
   Es = 'es',
   En = 'en',

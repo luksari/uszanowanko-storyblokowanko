@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
 import { LocaleDropdown } from 'components/navigation/localeDropdown/LocaleDropdown';
-import { useTranslations } from 'hooks/useTranslations/useTranslations';
 import { useBodyClass } from '@/hooks/useBodyClass/useBodyClass';
 
 import {
@@ -18,8 +17,6 @@ import {
 } from './Navigation.styles';
 
 export const Navigation = () => {
-  const { t } = useTranslations();
-
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleIsExpanded = useCallback(() => setIsExpanded((prev) => !prev), []);

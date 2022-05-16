@@ -65,6 +65,21 @@ export type SbSEO = {
 type SbPageConfig = {
   body: SbBlok<'page', any, 'page'>[];
   seo: SbSEO[];
+  translated_slug: string;
+};
+
+export type SbLinkModel = {
+  id: number;
+  slug: string;
+  name: string;
+  is_folder: boolean;
+  parent_id: number;
+  published: boolean;
+  path: string;
+  position: number;
+  uuid: string;
+  is_startpage: boolean;
+  real_path: string;
 };
 
 export type SbPageModel = SbStoryData<'page', SbPageConfig, 'page'> & {

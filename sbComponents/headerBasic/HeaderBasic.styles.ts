@@ -54,6 +54,12 @@ export const ContainerStyled = styled.div<WithImage>`
 export const ImageWrapperStyled = styled.div`
   width: 100%;
   max-width: 520px;
+  margin-bottom: 24px;
+
+  ${({ theme }) => theme.breakpoints.mq.min.md} {
+    margin-bottom: 0;
+    margin-left: 0;
+  }
 `;
 
 export const ImageStyled = styled(SbImage)`

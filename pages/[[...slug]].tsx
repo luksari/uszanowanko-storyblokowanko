@@ -1,13 +1,22 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useEffect } from 'react';
 
 import { PageParams, PageProps } from '@/types/page';
 import { AppPage } from '@/templates/AppPage';
-import { getLinks, getStory } from '@/services/storyblok/storyblok';
-import { i18nToStoryblokMap } from '@/i18n/i18n.utils';
-import { I18nLocale } from '@/context/localeContext/LocaleContext.types';
+import { getAllStories, getLinks } from '@/services/storyblok/storyblok';
+import { i18nToStoryblokMap, storyblokToi18nMap } from '@/i18n/i18n.utils';
+import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 import { PreviewPage } from '@/templates/PreviewPage';
+import { useLocale } from '@/hooks/useLocale/useLocale';
 
 const SluggedPage = (props: PageProps) => {
+  const { setAltSlugs, setLocale } = useLocale();
+
+  useEffect(() => {
+    setAltSlugs(props.alternativeSlugs);
+    setLocale(props.locale);
+  }, [props.alternativeSlugs, props.locale, setAltSlugs, setLocale]);
+
   return <>{props.preview ? <PreviewPage /> : <AppPage ctx={props} />}</>;
 };
 
@@ -20,18 +29,51 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
   params,
   preview,
 }) => {
-  const { slug } = params as PageParams;
-  const joinedSlug: string = slug.join('/');
-  const res = await getStory(joinedSlug, i18nToStoryblokMap[locale as I18nLocale]);
+  const root = process.env.NEXT_PUBLIC_APP_CATALOG;
+
+  const { data: storiesData } = await getAllStories(i18nToStoryblokMap[locale as I18nLanguage]);
+  const { data: linksData } = await getLinks();
+  const { slug: slugArr } = params as PageParams;
+
+  const joinedSlug: string = slugArr.join('/');
+  const slugWithLocale = locale === I18nLanguage.Pl ? `${root}/${joinedSlug}` : `${locale}/${root}/${joinedSlug}`;
+
+  const links = Object.values(linksData.links).map((link) => {
+    if (link.is_folder) {
+      return;
+    }
+    const newSlug = locale === I18nLanguage.Pl ? link.slug : `${locale}/${link.slug}`;
+
+    return { ...link, slug: newSlug };
+  });
+
+  const story = storiesData.stories.find((story) => {
+    return story.full_slug === slugWithLocale;
+  });
+
+  const altSlugs = locales?.reduce((acc, curr) => {
+    return {
+      ...acc,
+      [curr]: `/${joinedSlug}`,
+    };
+  }, {});
+
+  if (!story) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      story: res.data ? res.data.story : null,
-      key: res.data ? res.data.story.id : null,
-      locale: locale ?? I18nLocale.Pl,
+      story: story,
+      key: story.id,
+      locale: storyblokToi18nMap[story.lang],
       locales: locales ?? [],
-      defaultLocale: defaultLocale ?? I18nLocale.Pl,
+      defaultLocale: defaultLocale ?? I18nLanguage.Pl,
       preview: !!preview,
+      alternativeSlugs: altSlugs,
+      links,
     } as PageProps,
     revalidate: 3600,
   };
@@ -39,22 +81,23 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
 
 export const getStaticPaths: GetStaticPaths<PageParams> = async ({ locales }) => {
   const { data } = await getLinks();
-  const paths: { params: PageParams; locale: I18nLocale }[] = [];
+  const paths: { params: PageParams; locale: I18nLanguage }[] = [];
 
   Object.keys(data.links).forEach((linkKey) => {
-    if (data.links[linkKey].is_folder) {
+    const link = data.links[linkKey];
+    if (link.is_folder) {
       return;
     }
 
-    const slug: string = data.links[linkKey].slug;
-
     // Create mapping for every language
     // it has to be formatted like this, because of docs requirements
-    const splittedSlug = slug.split('/');
+    const splitSlugRaw = link.slug.split('/');
+    const [, ...splitWithoutPrefix] = splitSlugRaw;
+    const splitSlug = splitSlugRaw[0] === process.env.NEXT_PUBLIC_APP_CATALOG ? splitWithoutPrefix : splitSlugRaw;
 
-    for (const locale of locales as I18nLocale[]) {
+    for (const locale of locales as I18nLanguage[]) {
       paths.push({
-        params: { slug: splittedSlug },
+        params: { slug: splitSlug },
         locale,
       });
     }

@@ -4,11 +4,38 @@ const nextConfig = {
   i18n: {
     // These are all the locales you want to support in
     // your application
+    localeDetection: false,
     locales: ['pl', 'en', 'es'],
     defaultLocale: 'pl',
   },
   compiler: {
     styledComponents: true,
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: { and: [/\.(js|ts)x?$/] },
+
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: `/${process.env.NEXT_PUBLIC_APP_CATALOG}/:path*`,
+        destination: '/:path*',
+      },
+      {
+        source: `/en/${process.env.NEXT_PUBLIC_APP_CATALOG}/:path*`,
+        destination: '/en/:path*',
+      },
+      {
+        source: `/es/${process.env.NEXT_PUBLIC_APP_CATALOG}/:path*`,
+        destination: '/es/:path*',
+      },
+    ];
   },
 };
 

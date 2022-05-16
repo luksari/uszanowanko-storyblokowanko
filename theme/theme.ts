@@ -1,10 +1,4 @@
-import {
-  headerContainer,
-  headerMask,
-  headerOverlay,
-  localeFlag,
-  navigation,
-} from 'theme/zIndexes';
+import { headerContainer, headerMask, headerOverlay, localeFlag, navigation } from 'theme/zIndexes';
 
 const xsMinWidth = 360;
 const smMinWidth = 768;
@@ -45,12 +39,12 @@ export const theme = {
     darkGray: '#444545',
     linkBlue: '#76E5FC',
     lightBlack: '#2a2a2a',
-    borderGrey:'#C9C9C9',
+    borderGrey: '#C9C9C9',
     black: '#000000',
     redAlert: '#ED6A5A',
     bluishGray: '#c6ccd8',
     green: '#92BA92',
-    darkGreen: '#78938A'
+    darkGreen: '#78938A',
   },
   sizes: {
     menuHeightMobile: 60,

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import BurgerIcon from 'assets/svg/borgir.svg';
 export const WrapperStyled = styled.nav<{ $isExpanded: boolean }>`
   position: fixed;
   display: flex;
@@ -9,19 +10,13 @@ export const WrapperStyled = styled.nav<{ $isExpanded: boolean }>`
   box-shadow: 0 2px 8px rgb(6 83 146 / 8%);
   height: ${({ theme }) => theme.sizes.menuHeightMobile}px;
   color: ${({ theme }) => theme.colors.darkGray};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.bluishGray};
   z-index: ${({ theme }) => theme.zIndexes.navigation};
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     justify-content: center;
     height: ${({ theme }) => theme.sizes.menuHeightDesktop}px;
   }
-
-  ${({ $isExpanded, theme }) =>
-    $isExpanded &&
-    css`
-      background-color: ${theme.colors.white};
-    `}
 `;
 
 export const ContainerStyled = styled.div`
@@ -40,11 +35,9 @@ export const ContainerStyled = styled.div`
   }
 `;
 
-export const BurgerIconStyled = styled.img`
-  /* stylelint-disable-line */
+export const BurgerIconStyled = styled(BurgerIcon)`
   path {
     transition: 250ms fill ease-out;
-    fill: ${({ theme }) => theme.colors.lightBlack};
   }
 `;
 
@@ -95,10 +88,9 @@ export const LogoLinkStyled = styled.a`
   }
 `;
 
-export const LogoStyled = styled.div`
+export const LogoStyled = styled.img`
   width: 148px;
   height: 52px;
-  background: red;
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     width: 130px;

@@ -12,7 +12,6 @@ export const Footer = () => {
         <SectionStyled>
           <CopyTextStyled>Uszanowanko Programowanko &copy; {new Date().getFullYear()}</CopyTextStyled>
         </SectionStyled>
-        <SocialSection></SocialSection>
       </ContainerStyled>
     </WrapperStyled>
   );

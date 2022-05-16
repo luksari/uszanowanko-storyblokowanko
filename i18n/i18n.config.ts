@@ -1,13 +1,7 @@
 import locales from 'i18n/locales.json';
-import { SbLanguage } from '@/lib/storyblok/storyblok.types';
-
-export enum I18nLanguage {
-  Pl = 'pl',
-  Es = 'es',
-  En = 'en',
-}
+import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 
 export const i18nConfig = {
-  defaultLocale: SbLanguage.Pl,
+  defaultLocale: I18nLanguage.Pl,
   locales: locales.map((locale) => locale as I18nLanguage),
 };
