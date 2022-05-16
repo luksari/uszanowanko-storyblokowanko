@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import StoryblokClient from 'storyblok-js-client';
 import { parse } from 'query-string';
 
-import { SbPageModel } from 'lib/storyblok/storyblok.types';
+import { SbLinkModel, SbPageModel } from 'lib/storyblok/storyblok.types';
 
 import { StoryblokContext } from './StoryblokContext';
 import { StoryblokContextState } from './StoryblokContext.types';
@@ -18,8 +18,17 @@ export const sbClient = new StoryblokClient(
   process.env.NEXT_PUBLIC_STORYBLOK_API,
 );
 
-export const StoryblokContextController = ({ children }: { children: ReactNode }) => {
-  const [story, setStory] = useState<SbPageModel | null>(null);
+export const StoryblokContextController = ({
+  children,
+  story: currentStory,
+  links: currentLinks,
+}: {
+  children: ReactNode;
+  story: SbPageModel;
+  links: SbLinkModel[];
+}) => {
+  const [story, setStory] = useState<SbPageModel>(currentStory);
+  const [links, setLinks] = useState<SbLinkModel[]>(currentLinks);
   const [language, setLanguage] = useState<string | null>(null);
   const [isInitial, setIsInitial] = useState<boolean>(true);
 
@@ -53,7 +62,7 @@ export const StoryblokContextController = ({ children }: { children: ReactNode }
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
-            console.log(error);
+            console.error(error);
           });
       });
     }
@@ -110,7 +119,7 @@ export const StoryblokContextController = ({ children }: { children: ReactNode }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]); // it's important to run the effect only once to avoid multiple event attachment
 
-  const ctxValue = useMemo<StoryblokContextState>(() => ({ story, setStory }), [story]);
+  const ctxValue = useMemo<StoryblokContextState>(() => ({ story, setStory, setLinks, links }), [links, story]);
 
   return <StoryblokContext.Provider value={ctxValue}>{children}</StoryblokContext.Provider>;
 };

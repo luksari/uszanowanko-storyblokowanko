@@ -8,14 +8,21 @@ import { i18nToStoryblokMap, storyblokToi18nMap } from '@/i18n/i18n.utils';
 import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 import { PreviewPage } from '@/templates/PreviewPage';
 import { useLocale } from '@/hooks/useLocale/useLocale';
+import { removeRootAndLocaleCatalog, removeRootCatalog } from '@/lib/storyblok/link/link.utils';
+import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 
 const SluggedPage = (props: PageProps) => {
   const { setAltSlugs, setLocale } = useLocale();
+  const { setLinks } = useStoryblokContext();
 
   useEffect(() => {
     setAltSlugs(props.alternativeSlugs);
     setLocale(props.locale);
   }, [props.alternativeSlugs, props.locale, setAltSlugs, setLocale]);
+
+  useEffect(() => {
+    setLinks(props.links);
+  }, [props.links, setLinks]);
 
   return <>{props.preview ? <PreviewPage /> : <AppPage ctx={props} />}</>;
 };
@@ -35,21 +42,28 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
   const { data: linksData } = await getLinks();
   const { slug: slugArr } = params as PageParams;
 
-  const joinedSlug: string = slugArr.join('/');
+  const joinedSlug = slugArr?.join('/');
   const slugWithLocale = locale === I18nLanguage.Pl ? `${root}/${joinedSlug}` : `${locale}/${root}/${joinedSlug}`;
-
-  const links = Object.values(linksData.links).map((link) => {
-    if (link.is_folder) {
-      return;
-    }
-    const newSlug = locale === I18nLanguage.Pl ? link.slug : `${locale}/${link.slug}`;
-
-    return { ...link, slug: newSlug };
-  });
 
   const story = storiesData.stories.find((story) => {
     return story.full_slug === slugWithLocale;
   });
+
+  if (!story) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const links = Object.values(linksData.links)
+    .map((link) => {
+      if (link.is_folder) {
+        return;
+      }
+
+      return { ...link, slug: removeRootCatalog(link.slug) };
+    })
+    .filter(Boolean);
 
   const altSlugs = locales?.reduce((acc, curr) => {
     return {
@@ -57,12 +71,6 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
       [curr]: `/${joinedSlug}`,
     };
   }, {});
-
-  if (!story) {
-    return {
-      notFound: true,
-    };
-  }
 
   return {
     props: {
@@ -85,19 +93,18 @@ export const getStaticPaths: GetStaticPaths<PageParams> = async ({ locales }) =>
 
   Object.keys(data.links).forEach((linkKey) => {
     const link = data.links[linkKey];
-    if (link.is_folder) {
-      return;
-    }
-
-    // Create mapping for every language
-    // it has to be formatted like this, because of docs requirements
-    const splitSlugRaw = link.slug.split('/');
-    const [, ...splitWithoutPrefix] = splitSlugRaw;
-    const splitSlug = splitSlugRaw[0] === process.env.NEXT_PUBLIC_APP_CATALOG ? splitWithoutPrefix : splitSlugRaw;
-
     for (const locale of locales as I18nLanguage[]) {
+      if (link.is_folder) {
+        return;
+      }
+      const slug = removeRootAndLocaleCatalog(link.slug, locale)?.split('/');
+
+      if (!slug) {
+        return;
+      }
+
       paths.push({
-        params: { slug: splitSlug },
+        params: { slug },
         locale,
       });
     }

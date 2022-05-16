@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 import { FC } from 'react';
 
-import ES from 'assets/svg/flags/flag-es.svg';
-import PL from 'assets/svg/flags/flag-pl.svg';
-import EN from 'assets/svg/flags/flag-gb.svg';
+import ES from 'public/assets/svg/flags/flag-es.svg';
+import PL from 'public/assets/svg/flags/flag-pl.svg';
+import EN from 'public/assets/svg/flags/flag-gb.svg';
 import { InternalLink } from '@/components/internalLink/InternalLink';
 
 const localeDropdownShadow = '0 3px 3px 0 rgba(3, 3, 3, 0.15)';
@@ -122,6 +122,8 @@ const getStyledFlag = (flag: FC) => styled(flag)`
   height: 18px;
 
   margin-left: 4px;
+  margin-bottom: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.bluishGray};
   z-index: ${({ theme }) => theme.zIndexes.localeFlag};
 `;
 

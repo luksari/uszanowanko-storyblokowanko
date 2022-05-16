@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components';
+import Image from 'next/image';
 
-import BurgerIcon from 'assets/svg/borgir.svg';
+import BurgerIcon from 'public/assets/svg/borgir.svg';
+import { InternalLink } from '@/components/internalLink/InternalLink';
+
 export const WrapperStyled = styled.nav<{ $isExpanded: boolean }>`
   position: fixed;
   display: flex;
@@ -10,7 +13,7 @@ export const WrapperStyled = styled.nav<{ $isExpanded: boolean }>`
   box-shadow: 0 2px 8px rgb(6 83 146 / 8%);
   height: ${({ theme }) => theme.sizes.menuHeightMobile}px;
   color: ${({ theme }) => theme.colors.darkGray};
-  background-color: ${({ theme }) => theme.colors.bluishGray};
+  background-color: ${({ theme }) => theme.colors.white};
   z-index: ${({ theme }) => theme.zIndexes.navigation};
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
@@ -36,18 +39,11 @@ export const ContainerStyled = styled.div`
 `;
 
 export const BurgerIconStyled = styled(BurgerIcon)`
-  path {
-    transition: 250ms fill ease-out;
-  }
+  color: ${({ theme }) => theme.colors.green};
+  transform: scale(0.85);
 `;
 
 export const BurgerStyled = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 16px;
-
-  padding: 0 13px;
-
   display: flex;
 
   background: transparent;
@@ -56,15 +52,11 @@ export const BurgerStyled = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  height: 48px;
-  transform: translateY(-45%);
 
   &:hover,
   &:focus {
     ${BurgerIconStyled} {
-      path {
-        fill: ${({ theme }) => theme.colors};
-      }
+      color: ${({ theme }) => theme.colors.darkGreen};
     }
   }
 
@@ -76,32 +68,22 @@ export const BurgerStyled = styled.button`
 export const LogoLinkStyled = styled.a`
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  aspect-ratio: 204/234;
+  width: 36px;
 
   &:focus {
     outline-color: ${({ theme }) => theme.colors.linkBlue};
   }
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
-    height: auto;
+    width: 56px;
     margin-left: 0;
     margin-right: 0;
   }
 `;
 
-export const LogoStyled = styled.img`
-  width: 148px;
-  height: 52px;
-
-  ${({ theme }) => theme.breakpoints.mq.min.md} {
-    width: 130px;
-    height: 45px;
-  }
-
-  ${({ theme }) => theme.breakpoints.mq.min.lg} {
-    width: 148px;
-    height: 52px;
-  }
-`;
+export const LogoImageStyled = styled(Image).attrs({ src: '/assets/images/logo_piesel.jpeg' })``;
 
 export const ListWrapperStyled = styled.div<{ $isExpanded: boolean }>`
   position: fixed;
@@ -141,6 +123,7 @@ export const ListStyled = styled.ul`
   width: 100%;
 
   flex-direction: column;
+  align-items: center;
 
   list-style-type: none;
   background: ${({ theme }) => theme.colors.white};
@@ -171,7 +154,7 @@ export const ListStyled = styled.ul`
     }
   }
 
-  ${({ theme }) => theme.breakpoints.mq.min.lg} {
+  ${({ theme }) => theme.breakpoints.mq.min.md} {
     margin-left: 54px;
   }
 `;
@@ -182,15 +165,10 @@ export const ActionsWrapperStyled = styled.div`
   flex-direction: column;
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
-    margin: 0;
-
+    margin: 0 16px 0 auto;
     flex-direction: row;
     justify-self: flex-end;
     align-items: center;
-  }
-
-  ${({ theme }) => theme.breakpoints.mq.min.lg} {
-    margin-left: auto;
   }
 `;
 
@@ -207,4 +185,33 @@ export const LocaleItemStyled = styled.li`
     margin-top: 0;
     margin-left: 23px;
   }
+`;
+
+export const NavListStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  ${({ theme }) => theme.breakpoints.mq.min.md} {
+    flex-direction: row;
+  }
+`;
+
+export const StyledInternalLink = styled(InternalLink)`
+  padding: 4px 8px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: 'Comic Sans MS', sans-serif;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.lightBlack};
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+  ${({ theme }) => theme.breakpoints.mq.min.md} {
+    margin-right: 16px;
+  }
+
 `;

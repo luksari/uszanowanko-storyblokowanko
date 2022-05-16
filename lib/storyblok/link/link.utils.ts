@@ -96,6 +96,11 @@ export const buildRichTextLinkHref = (link: SbRichTextLink, locale: I18nLanguage
   return href;
 };
 
+export const removeRootCatalog = (fullSlug: string | undefined) => {
+  const regExpRoot = new RegExp(`^${landingsRoot}\/`);
+  return fullSlug?.replace(regExpRoot, '');
+};
+
 export const removeRootAndLocaleCatalog = (fullSlug: string | undefined, locale: I18nLanguage) => {
   if (!fullSlug) {
     return null;
