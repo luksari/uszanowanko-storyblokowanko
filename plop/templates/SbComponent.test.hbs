@@ -1,0 +1,29 @@
+import React from 'react';
+
+import { render } from 'lib/test';
+import { SbBlok, SbEditableComponent } from 'lib/storyblok/storyblok.types';
+import { sbEditableComponentMockFactory } from 'lib/test/factory/sbEditableComponentMockFactory';
+
+import { {{pascalCase name}} } from './{{pascalCase name}}';
+import { Sb{{pascalCase name}}Config } from './{{pascalCase name}}.types';
+
+let sbComponent: SbEditableComponent<'{{kebabCase name}}', Sb{{pascalCase name}}Config>;
+const blok: SbBlok<'{{kebabCase name}}', Sb{{pascalCase name}}Config> = {
+  _uid: 'befce12a-ea50-4615-b22b-5d6fabf8f561',
+  component: '{{kebabCase name}}',
+  some_field: 'example string',
+};
+
+describe('{{pascalCase name}}', () => {
+  beforeEach(() => {
+    sbComponent = sbEditableComponentMockFactory(blok);
+  });
+
+  it(`renders some_field correctly`, () => {
+    const { getByText } = render(<{{pascalCase name}} {...sbComponent} />);
+
+    const someFieldContent = getByText('example string');
+
+    expect(someFieldContent).toBeInTheDocument();
+  });
+});

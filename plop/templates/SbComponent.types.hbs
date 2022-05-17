@@ -1,0 +1,8 @@
+import { SbEditableComponent } from 'lib/storyblok/storyblok.types';
+
+export type Sb{{pascalCase name}}Config = {
+  /** here goes fields defined in Storyblok **/
+  some_field: string;
+};
+
+export type {{pascalCase name}}Props = SbEditableComponent<'{{kebabCase name}}', Sb{{pascalCase name}}Config>;

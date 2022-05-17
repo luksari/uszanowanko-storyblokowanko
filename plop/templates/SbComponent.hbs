@@ -1,0 +1,14 @@
+import React from 'react';
+
+import { {{pascalCase name}}Props } from 'sbComponents/{{camelCase name}}/{{pascalCase name}}.types';
+import { ContainerStyled, WrapperStyled } from 'sbComponents/{{camelCase name}}/{{pascalCase name}}.styles';
+
+export const {{pascalCase name}} = ({ blok, ...props }: {{pascalCase name}}Props) => {
+  return (
+    <WrapperStyled {...props}>
+      <ContainerStyled>
+        <>{blok.some_field}</>
+      </ContainerStyled>
+    </WrapperStyled>
+  );
+};
