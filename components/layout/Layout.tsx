@@ -7,12 +7,12 @@ import { LayoutProps } from 'components/layout/Layout.types';
 
 import { ContentStyled, LayoutWrapperStyled } from './Layout.styles';
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children, story, links }: LayoutProps) => {
   return (
     <>
-      <Helmet />
+      <Helmet story={story} />
       <LayoutWrapperStyled>
-        <Navigation />
+        <Navigation links={links} />
         <ContentStyled>{children}</ContentStyled>
         <Footer />
       </LayoutWrapperStyled>

@@ -14,6 +14,7 @@
   "dependencies": {
     "@storyblok/js": "1.2.0",
     "axios": "0.27.2",
+    "cookies-next": "2.0.4",
     "next": "12.1.6",
     "query-string": "7.1.1",
     "react": "18.1.0",

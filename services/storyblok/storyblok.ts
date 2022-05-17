@@ -1,6 +1,6 @@
-import { storyblokApi } from '@/context/storyblokContext/StoryblokContextController';
 import { SbLanguage } from '@/lib/storyblok/storyblok.types';
 import { GetLinksRes, GetStoriesRes } from '@/services/storyblok/storyblok.types';
+import { storyblokApi } from '@/pages/_app';
 
 export const getAllStories = async (language = SbLanguage.Pl): Promise<GetStoriesRes> => {
   const localeToQuery = language === 'default' ? '[default]' : language;

@@ -1,3 +1,5 @@
+import { SbPageModel } from '@/lib/storyblok/storyblok.types';
+
 export type HelmetProps = {
-  some?: string;
+  story: SbPageModel;
 };

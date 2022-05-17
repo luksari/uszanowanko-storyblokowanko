@@ -4,6 +4,7 @@ import { useOnClickOutside } from 'usehooks-ts';
 import { useLocale } from 'hooks/useLocale/useLocale';
 import { i18nConfig } from 'i18n/i18n.config';
 import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
+import { LocaleDropdownProps } from '@/components/navigation/localeDropdown/LocaleDropdown.types';
 
 import {
   WrapperStyled,
@@ -19,7 +20,7 @@ const localeComponentMap: Record<I18nLanguage, ReactNode> = {
   [I18nLanguage.Es]: <StyledFlagImage src={'/assets/svg/flags/flag-es.svg'} layout={'fill'} objectFit={'cover'} />,
 };
 
-export const LocaleDropdown = () => {
+export const LocaleDropdown = ({ onLangChange }: LocaleDropdownProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { locale: currentLocale, alternativeSlugs } = useLocale();
   const inactiveLocales = useMemo(
@@ -40,7 +41,8 @@ export const LocaleDropdown = () => {
         {inactiveLocales.map((locale) => {
           const InactiveFlag = localeComponentMap[locale];
           return (
-            <li key={locale}>
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
+            <li key={locale} onClick={() => onLangChange(locale)}>
               <InactiveFlagLinkStyled
                 onClick={toggleIsExpanded}
                 href={alternativeSlugs?.[locale] ?? '/'}

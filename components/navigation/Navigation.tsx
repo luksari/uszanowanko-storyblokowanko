@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 import { LocaleDropdown } from 'components/navigation/localeDropdown/LocaleDropdown';
 import { useBodyClass } from '@/hooks/useBodyClass/useBodyClass';
-import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 import { useLocale } from '@/hooks/useLocale/useLocale';
 import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
+import { NavigationProps } from '@/components/navigation/Navigation.types';
 
 import {
   ActionsWrapperStyled,
@@ -21,8 +21,7 @@ import {
   WrapperStyled,
 } from './Navigation.styles';
 
-export const Navigation = () => {
-  const { links } = useStoryblokContext();
+export const Navigation = ({ links }: NavigationProps) => {
   const { locale } = useLocale();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -56,7 +55,7 @@ export const Navigation = () => {
             </NavListStyled>
             <ActionsWrapperStyled>
               <LocaleItemStyled>
-                <LocaleDropdown />
+                <LocaleDropdown onLangChange={() => setIsExpanded(false)} />
               </LocaleItemStyled>
             </ActionsWrapperStyled>
           </ListStyled>

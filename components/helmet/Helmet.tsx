@@ -2,11 +2,9 @@ import React from 'react';
 import { Helmet as RHHelmet } from 'react-helmet';
 import { useRouter } from 'next/router';
 
-import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 import { HelmetProps } from '@/components/helmet/Helmet.types';
 
-export const Helmet = ({}: HelmetProps) => {
-  const { story } = useStoryblokContext();
+export const Helmet = ({ story }: HelmetProps) => {
   const seo = story?.content?.seo?.[0];
   const url = `${process.env.NEXT_PUBLIC_APP_BASE_URL}{${useRouter().pathname}}`;
 

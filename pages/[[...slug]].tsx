@@ -9,28 +9,16 @@ import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 import { PreviewPage } from '@/templates/PreviewPage';
 import { useLocale } from '@/hooks/useLocale/useLocale';
 import { removeRootAndLocaleCatalog, removeRootCatalog } from '@/lib/storyblok/link/link.utils';
-import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 
 const SluggedPage = (props: PageProps) => {
   const { setAltSlugs, setLocale } = useLocale();
-  const { setLinks, setStory } = useStoryblokContext();
 
   useEffect(() => {
     setAltSlugs(props.alternativeSlugs);
     setLocale(props.locale);
   }, [props.alternativeSlugs, props.locale, setAltSlugs, setLocale]);
 
-  /**
-   * @DESC It syncs state of ContextControllers that provide data along the React components tree
-   * @IMPROVEMENT Better idea would be passing this data as props exactly to the contracted components
-   * This can be achieved by creating some cache files in filesystem that SSG will use
-   * */
-  useEffect(() => {
-    setLinks(props.links);
-    setStory(props.story);
-  }, [props.links, props.story, setLinks, setStory]);
-
-  return <>{props.preview ? <PreviewPage /> : <AppPage ctx={props} />}</>;
+  return <>{props.preview ? <PreviewPage {...props} /> : <AppPage {...props} />}</>;
 };
 
 export default SluggedPage;
@@ -67,7 +55,7 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
         return;
       }
 
-      return { ...link, slug: removeRootCatalog(link.slug) };
+      return { ...link, slug: `/${removeRootCatalog(link.slug)}` };
     })
     .filter(Boolean);
 

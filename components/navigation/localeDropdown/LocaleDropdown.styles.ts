@@ -23,9 +23,9 @@ export const ButtonStyled = styled.button`
   margin: 4px 12px;
   width: ${flagSizeMobile}px;
   height: ${flagSizeMobile}px;
-  border: 2px solid ${({ theme }) => theme.colors.bluishGray};
+  border: 2px solid ${({ theme }) => theme.colors.darkGreen};
   z-index: 1;
-  cursor: pointer;
+  cursor: not-allowed;
 
   &:focus {
     outline: none;
@@ -49,6 +49,8 @@ export const ButtonStyled = styled.button`
     width: ${flagSizeDesktop}px;
     height: ${flagSizeDesktop}px;
     margin: 4px;
+    border: 2px solid ${({ theme }) => theme.colors.bluishGray};
+    cursor: pointer;
 
     &:focus::before {
       width: ${flagSizeDesktop + 16}px;
@@ -126,6 +128,11 @@ export const InactiveFlagLinkStyled = styled(InternalLink)`
   outline: none;
   border: 2px solid ${({ theme }) => theme.colors.bluishGray};
 
+  transition: transform 150ms ease-out;
+  &:hover {
+    transform: scale(1.2);
+  }
+
   &:focus::before {
     content: '';
 
@@ -143,6 +150,11 @@ export const InactiveFlagLinkStyled = styled(InternalLink)`
     width: ${flagSizeDesktop}px;
     height: ${flagSizeDesktop}px;
     margin: 4px;
+
+    &:hover {
+      transform: scale(1);
+    }
+
     &:focus::before {
       width: ${flagSizeDesktop + 6}px;
       height: ${flagSizeDesktop + 6}px;

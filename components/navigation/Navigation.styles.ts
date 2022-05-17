@@ -94,7 +94,7 @@ export const ListWrapperStyled = styled.div<{ $isExpanded: boolean }>`
   width: 100%;
   height: 0;
   overflow: hidden;
-  transition: height 350ms ease-out;
+  transition: height 250ms ease-out;
 
   ${({ $isExpanded }) =>
     $isExpanded &&
@@ -206,6 +206,8 @@ export const StyledInternalLink = styled(InternalLink)`
   font-family: 'Comic Sans MS', sans-serif;
   text-align: center;
   color: ${({ theme }) => theme.colors.lightBlack};
+  font-size: 2rem;
+  margin: 10px 0;
 
   &:last-of-type {
     margin-right: 0;
