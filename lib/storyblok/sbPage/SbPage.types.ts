@@ -1,8 +1,6 @@
-import { SbEditableResult } from '@storyblok/storyblok-editable';
-
-import { SbPageModel } from 'lib/storyblok/storyblok.types';
+import { SbEditableAttrs, SbPageModel } from 'lib/storyblok/storyblok.types';
 
 export type StoryblokPageProps = {
   story: SbPageModel;
-  editable?: SbEditableResult;
+  editable?: SbEditableAttrs;
 };

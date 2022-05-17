@@ -44,7 +44,10 @@ export const BurgerIconStyled = styled(BurgerIcon)`
 `;
 
 export const BurgerStyled = styled.button`
+  position: absolute;
   display: flex;
+  left: 16px;
+  top: 4px;
 
   background: transparent;
   border: none;

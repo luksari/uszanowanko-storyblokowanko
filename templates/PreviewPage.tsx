@@ -1,5 +1,5 @@
 import React from 'react';
-import { sbEditable } from '@storyblok/storyblok-editable';
+import { storyblokEditable } from '@storyblok/js';
 
 import { SbPage } from 'lib/storyblok/sbPage/SbPage';
 import { useStoryblokContext } from 'hooks/useStoryblokContext/useStoryblokContext';
@@ -11,5 +11,5 @@ export const PreviewPage = () => {
     return null;
   }
 
-  return <SbPage story={story} editable={sbEditable(story.content)} />;
+  return <SbPage story={story} editable={storyblokEditable(story.content)} />;
 };

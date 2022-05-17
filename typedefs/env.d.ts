@@ -12,8 +12,4 @@ export declare global {
       NODE_ENV: 'development' | 'production';
     }
   }
-
-  interface Window {
-    StoryblokBridge: any;
-  }
 }

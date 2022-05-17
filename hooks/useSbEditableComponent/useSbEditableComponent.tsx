@@ -1,6 +1,6 @@
 import React, { ComponentType } from 'react';
 import { useCallback } from 'react';
-import { sbEditable } from '@storyblok/storyblok-editable';
+import { storyblokEditable } from '@storyblok/js';
 
 import { SbBlok, SbComponentsMap } from '@/lib/storyblok/storyblok.types';
 import { NotDefined } from '@/lib/storyblok/notDefined/NotDefined';
@@ -16,7 +16,7 @@ export const useSbEditableComponent = <ComponentNames extends string>(
       const componentName = blok.component as ComponentNames;
       if (componentWhitelist[componentName]) {
         const Component: ComponentType<any> = componentWhitelist[componentName];
-        const editable = sbEditable(blok);
+        const editable = storyblokEditable(blok);
         return <Component {...editable} {...extraProps} blok={blok} key={blok._uid} />;
       } else {
         return <NotDefined componentName={componentName} />;

@@ -18,12 +18,6 @@ export const Helmet = ({}: HelmetProps) => {
 
   return (
     <RHHelmet title={`Uszanowanko Storyblokowanko - ${metaplugin.title}`}>
-      <script
-        async
-        src={'https://app.storyblok.com/f/storyblok-v2-latest.js'}
-        type={'text/javascript'}
-        id={'storyblokBridge'}
-      />
       <title>Uszanowanko Storyblokowanko - ${metaplugin.title}</title>
       <link rel={'canonical'} href={url} />
       <meta property={'og:url'} content={url} />

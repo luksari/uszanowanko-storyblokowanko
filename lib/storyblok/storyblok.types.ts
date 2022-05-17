@@ -1,6 +1,19 @@
-import { StoryData } from 'storyblok-js-client';
 import { ComponentType } from 'react';
-import { SbEditableResult } from '@storyblok/storyblok-editable';
+import {
+  SbBlokData,
+  StoryData,
+  RichtextInstance,
+  Stories,
+  StoriesParams,
+  Story,
+  StoryblokCache,
+  StoryblokCacheProvider,
+  StoryblokConfig,
+  StoryblokManagmentApiResult,
+  StoryblokResult,
+  StoryParams,
+} from '@storyblok/js';
+import { AxiosInstance } from 'axios';
 
 /** @SEE The list of defined components in storyblok */
 export type SbComponentName =
@@ -14,6 +27,11 @@ export type SbComponentName =
   | 'cta'
   | 'spacing'
   | 'my-new-module';
+
+export type SbEditableAttrs = {
+  'data-blok-c'?: string;
+  'data-blok-uid'?: string;
+};
 
 export type SbStoryData<
   Component extends AllowedComponents,
@@ -30,7 +48,8 @@ export type SbBlok<
   _uid: string;
   component: Component;
   _editable?: string;
-} & Content;
+} & Content &
+  SbBlokData;
 
 export type SbEditableComponent<
   Component extends AllowedComponents,
@@ -38,7 +57,7 @@ export type SbEditableComponent<
   AllowedComponents extends string = SbComponentName,
 > = {
   blok: SbBlok<Component, Content, AllowedComponents>;
-} & SbEditableResult;
+} & SbEditableAttrs;
 
 export enum SbLanguage {
   Pl = 'default',
@@ -162,3 +181,28 @@ export type TranslatedSlug = {
   lang: SbLanguage;
   path: string;
 };
+
+export declare class StoryblokClient {
+  throttle: any;
+  accessToken: string;
+  cache: StoryblokCache;
+  client: AxiosInstance;
+  richTextResolver: RichtextInstance;
+  constructor(config: StoryblokConfig, endpoint?: string);
+  get(slug: string, params?: any): Promise<StoryblokResult>;
+  getAll(slug: string, params?: any, entity?: string): Promise<any[]>;
+  post(slug: string, params?: any): Promise<StoryblokManagmentApiResult>;
+  put(slug: string, params?: any): Promise<StoryblokManagmentApiResult>;
+  delete(slug: string, params?: any): Promise<StoryblokManagmentApiResult>;
+  getStories(params?: StoriesParams): Promise<Stories>;
+  getStory(slug: string, params?: StoryParams): Promise<Story>;
+  setToken(token: string): void;
+  getToken(): string;
+  setCacheVersion(cv: string): void;
+  cacheResponse(url: string, params: any): Promise<StoryblokResult>;
+  cacheVersions(): { [key: string]: string };
+  cacheVersion(): string;
+  cacheProvider(): StoryblokCacheProvider;
+  flushCache(): Promise<this>;
+  setComponentResolver(renderFunction: (component: string, data: any) => void): void;
+}

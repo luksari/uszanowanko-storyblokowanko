@@ -92,7 +92,7 @@ export const DropdownStyled = styled.ul<{ $isExpanded: boolean }>`
 
     padding: 26px 0 0;
 
-    height: 75px;
+    height: 80px;
     width: 26px;
     opacity: 0;
 
@@ -121,8 +121,7 @@ const getStyledFlag = (flag: FC) => styled(flag)`
   width: 18px;
   height: 18px;
 
-  margin-left: 4px;
-  margin-bottom: 4px;
+  margin: 4px;
   border: 1px solid ${({ theme }) => theme.colors.bluishGray};
   z-index: ${({ theme }) => theme.zIndexes.localeFlag};
 `;

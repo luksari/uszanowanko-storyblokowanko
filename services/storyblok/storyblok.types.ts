@@ -1,13 +1,5 @@
 import { SbLinkModel, SbPageModel } from '@/lib/storyblok/storyblok.types';
 
-export type GetStoryRes = {
-  data: {
-    cv: number;
-    rels: unknown[];
-    story: SbPageModel;
-  };
-};
-
 export type GetStoriesRes = {
   data: {
     cv: number;
