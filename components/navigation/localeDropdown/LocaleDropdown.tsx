@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 
 import { useLocale } from 'hooks/useLocale/useLocale';
@@ -9,17 +9,14 @@ import {
   WrapperStyled,
   ButtonStyled,
   DropdownStyled,
-  FlagPL,
-  FlagEN,
-  FlagES,
-  InactiveFlagItemStyled,
+  StyledFlagImage,
   InactiveFlagLinkStyled,
 } from './LocaleDropdown.styles';
 
-const localeComponentMap: Record<I18nLanguage, FC> = {
-  [I18nLanguage.Pl]: FlagPL,
-  [I18nLanguage.En]: FlagEN,
-  [I18nLanguage.Es]: FlagES,
+const localeComponentMap: Record<I18nLanguage, ReactNode> = {
+  [I18nLanguage.Pl]: <StyledFlagImage src={'/assets/svg/flags/flag-pl.svg'} layout={'fill'} objectFit={'cover'} />,
+  [I18nLanguage.En]: <StyledFlagImage src={'/assets/svg/flags/flag-gb.svg'} layout={'fill'} objectFit={'cover'} />,
+  [I18nLanguage.Es]: <StyledFlagImage src={'/assets/svg/flags/flag-es.svg'} layout={'fill'} objectFit={'cover'} />,
 };
 
 export const LocaleDropdown = () => {
@@ -38,18 +35,21 @@ export const LocaleDropdown = () => {
 
   return (
     <WrapperStyled ref={refWrapper}>
-      <ButtonStyled onClick={toggleIsExpanded}>
-        <ActiveFlag />
-      </ButtonStyled>
+      <ButtonStyled onClick={toggleIsExpanded}>{ActiveFlag}</ButtonStyled>
       <DropdownStyled aria-expanded={isExpanded} $isExpanded={isExpanded}>
         {inactiveLocales.map((locale) => {
           const InactiveFlag = localeComponentMap[locale];
           return (
-            <InactiveFlagItemStyled key={locale} onClick={toggleIsExpanded}>
-              <InactiveFlagLinkStyled href={alternativeSlugs?.[locale] ?? '/'} locale={locale} aria-label={locale}>
-                <InactiveFlag />
+            <li key={locale}>
+              <InactiveFlagLinkStyled
+                onClick={toggleIsExpanded}
+                href={alternativeSlugs?.[locale] ?? '/'}
+                locale={locale}
+                aria-label={locale}
+              >
+                {InactiveFlag}
               </InactiveFlagLinkStyled>
-            </InactiveFlagItemStyled>
+            </li>
           );
         })}
       </DropdownStyled>

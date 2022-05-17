@@ -11,12 +11,18 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  webpack: (config) => {
+  webpack: (config, options) => {
     config.module.rules.push({
       test: /\.svg$/,
-      issuer: { and: [/\.(js|ts)x?$/] },
-
-      use: ['@svgr/webpack'],
+      issuer: /\.tsx?$/,
+      include: [options.dir],
+      use: [
+        'next-swc-loader',
+        {
+          loader: '@svgr/webpack',
+          options: { babel: false },
+        },
+      ],
     });
 
     return config;

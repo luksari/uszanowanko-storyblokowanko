@@ -5,6 +5,7 @@ export const InternalLink = ({
   href,
   locale: linkLocale,
   children,
+  onClick,
   ...rest
 }: LinkProps & { children?: ReactNode; className?: string }) => {
   return (
@@ -16,7 +17,13 @@ export const InternalLink = ({
       hrefLang={linkLocale as string}
       {...rest}
     >
-      <a className={rest.className} href={href as string} lang={linkLocale as string} hrefLang={linkLocale as string}>
+      <a
+        onClick={onClick}
+        className={rest.className}
+        href={href as string}
+        lang={linkLocale as string}
+        hrefLang={linkLocale as string}
+      >
         {children}
       </a>
     </NextLink>

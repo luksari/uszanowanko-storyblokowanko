@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 
-import BurgerIcon from 'public/assets/svg/borgir.svg';
 import { InternalLink } from '@/components/internalLink/InternalLink';
 
 export const WrapperStyled = styled.nav<{ $isExpanded: boolean }>`
@@ -38,14 +37,11 @@ export const ContainerStyled = styled.div`
   }
 `;
 
-export const BurgerIconStyled = styled(BurgerIcon)`
-  color: ${({ theme }) => theme.colors.green};
-  transform: scale(0.85);
-`;
-
 export const BurgerStyled = styled.button`
   position: absolute;
   display: flex;
+  width: 46px;
+  height: 46px;
   left: 16px;
   top: 4px;
 
@@ -56,11 +52,8 @@ export const BurgerStyled = styled.button`
   align-items: center;
   cursor: pointer;
 
-  &:hover,
   &:focus {
-    ${BurgerIconStyled} {
-      color: ${({ theme }) => theme.colors.darkGreen};
-    }
+    outline: 1px solid red;
   }
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
@@ -86,7 +79,12 @@ export const LogoLinkStyled = styled.a`
   }
 `;
 
-export const LogoImageStyled = styled(Image).attrs({ src: '/assets/images/logo_piesel.jpeg' })``;
+export const LogoImageStyled = styled(Image).attrs({ src: '/assets/images/logo_piesel.jpeg' })`
+  transition: transform 250ms ease-out;
+  &:hover {
+    transform: rotateZ(360deg);
+  }
+`;
 
 export const ListWrapperStyled = styled.div<{ $isExpanded: boolean }>`
   position: fixed;
@@ -211,6 +209,10 @@ export const StyledInternalLink = styled(InternalLink)`
 
   &:last-of-type {
     margin-right: 0;
+  }
+  transition: transform 100ms ease-out;
+  &:hover {
+    transform: rotateZ(-12deg);
   }
 }
   ${({ theme }) => theme.breakpoints.mq.min.md} {

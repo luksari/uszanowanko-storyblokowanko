@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import Image from 'next/image';
 
 import { LocaleDropdown } from 'components/navigation/localeDropdown/LocaleDropdown';
 import { useBodyClass } from '@/hooks/useBodyClass/useBodyClass';
@@ -8,7 +9,6 @@ import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 
 import {
   ActionsWrapperStyled,
-  BurgerIconStyled,
   BurgerStyled,
   ContainerStyled,
   ListStyled,
@@ -35,7 +35,12 @@ export const Navigation = () => {
     <WrapperStyled $isExpanded={isExpanded}>
       <ContainerStyled>
         <BurgerStyled aria-label={isExpanded ? 'Zwiń' : 'Rozwiń'} onClick={toggleIsExpanded}>
-          <BurgerIconStyled />
+          <Image
+            alt={'burger icon to expand menu'}
+            src={'/assets/svg/borgir.svg'}
+            layout={'fill'}
+            objectFit={'cover'}
+          />
         </BurgerStyled>
         <LogoLinkStyled href={homeHref}>
           <LogoImageStyled objectFit={'cover'} layout={'fill'} aria-label={'Uszanowanko Storyblokowanko logo'} />

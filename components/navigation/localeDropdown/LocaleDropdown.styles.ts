@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
-import { FC } from 'react';
+import Image from 'next/image';
 
-import ES from 'public/assets/svg/flags/flag-es.svg';
-import PL from 'public/assets/svg/flags/flag-pl.svg';
-import EN from 'public/assets/svg/flags/flag-gb.svg';
 import { InternalLink } from '@/components/internalLink/InternalLink';
 
 const localeDropdownShadow = '0 3px 3px 0 rgba(3, 3, 3, 0.15)';
+
+const flagSizeMobile = 36;
+const flagSizeDesktop = 18;
 
 export const WrapperStyled = styled.div`
   position: relative;
@@ -18,18 +18,14 @@ export const ButtonStyled = styled.button`
   position: relative;
 
   display: flex;
-
-  height: 100%;
-
+  overflow: visible;
   align-items: center;
-
-  background: none;
-  border: none;
+  margin: 4px 12px;
+  width: ${flagSizeMobile}px;
+  height: ${flagSizeMobile}px;
+  border: 2px solid ${({ theme }) => theme.colors.bluishGray};
+  z-index: 1;
   cursor: pointer;
-
-  & > svg {
-    margin: 4px;
-  }
 
   &:focus {
     outline: none;
@@ -39,22 +35,30 @@ export const ButtonStyled = styled.button`
     content: '';
 
     position: absolute;
-    left: 23px;
-    top: 10px;
+    top: 50%;
+    left: 50%;
 
-    width: 20px;
-    height: 20px;
+    width: ${flagSizeMobile + 6}px;
+    height: ${flagSizeMobile + 6}px;
 
-    outline: 1px solid ${({ theme }) => theme.colors.black};
+    border: 1px solid ${({ theme }) => theme.colors.green};
+    transform: translate(-50%, -50%);
   }
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
-    padding: 0;
+    width: ${flagSizeDesktop}px;
+    height: ${flagSizeDesktop}px;
+    margin: 4px;
+
+    &:focus::before {
+      width: ${flagSizeDesktop + 16}px;
+      height: ${flagSizeDesktop + 16}px;
+    }
 
     &::after {
       content: '';
 
-      margin-left: 5px;
+      margin-left: 24px;
 
       width: 0;
       height: 0;
@@ -64,11 +68,6 @@ export const ButtonStyled = styled.button`
       border-left: 5px solid transparent;
 
       transform: translateY(25%);
-    }
-
-    &:focus::before {
-      left: 3px;
-      top: 3px;
     }
 
     &:hover::after,
@@ -99,57 +98,54 @@ export const DropdownStyled = styled.ul<{ $isExpanded: boolean }>`
     flex-direction: column;
 
     box-shadow: ${localeDropdownShadow};
-    overflow: hidden;
     transform: scaleY(0);
     transform-origin: 0 0;
 
-    visibility: hidden;
     transition: transform 250ms ease-out;
 
     ${({ $isExpanded }) =>
       $isExpanded &&
       css`
         transform: scaleY(1);
-
         opacity: 1;
-        visibility: visible;
       `}
   }
 `;
 
-const getStyledFlag = (flag: FC) => styled(flag)`
-  width: 18px;
-  height: 18px;
-
-  margin: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.bluishGray};
+export const StyledFlagImage = styled(Image)`
   z-index: ${({ theme }) => theme.zIndexes.localeFlag};
 `;
 
-export const FlagPL = getStyledFlag(PL);
-export const FlagEN = getStyledFlag(EN);
-export const FlagES = getStyledFlag(ES);
-
-export const InactiveFlagItemStyled = styled.li``;
-
 export const InactiveFlagLinkStyled = styled(InternalLink)`
   position: relative;
-
+  width: ${flagSizeMobile}px;
+  height: ${flagSizeMobile}px;
+  margin: 4px 12px;
   display: flex;
 
   outline: none;
+  border: 2px solid ${({ theme }) => theme.colors.bluishGray};
 
-  &:focus::after {
+  &:focus::before {
     content: '';
 
     position: absolute;
     top: 50%;
     left: 50%;
 
-    width: 20px;
-    height: 20px;
+    width: ${flagSizeMobile + 6}px;
+    height: ${flagSizeMobile + 6}px;
 
-    border: 1px solid ${({ theme }) => theme.colors.linkBlue};
+    border: 1px solid ${({ theme }) => theme.colors.green};
     transform: translate(-50%, -50%);
+  }
+  ${({ theme }) => theme.breakpoints.mq.min.md} {
+    width: ${flagSizeDesktop}px;
+    height: ${flagSizeDesktop}px;
+    margin: 4px;
+    &:focus::before {
+      width: ${flagSizeDesktop + 6}px;
+      height: ${flagSizeDesktop + 6}px;
+    }
   }
 `;
