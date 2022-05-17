@@ -18,17 +18,9 @@ export const sbClient = new StoryblokClient(
   process.env.NEXT_PUBLIC_STORYBLOK_API,
 );
 
-export const StoryblokContextController = ({
-  children,
-  story: currentStory,
-  links: currentLinks,
-}: {
-  children: ReactNode;
-  story: SbPageModel;
-  links: SbLinkModel[];
-}) => {
-  const [story, setStory] = useState<SbPageModel>(currentStory);
-  const [links, setLinks] = useState<SbLinkModel[]>(currentLinks);
+export const StoryblokContextController = ({ children }: { children: ReactNode }) => {
+  const [story, setStory] = useState<SbPageModel | null>(null);
+  const [links, setLinks] = useState<SbLinkModel[] | null>(null);
   const [language, setLanguage] = useState<string | null>(null);
   const [isInitial, setIsInitial] = useState<boolean>(true);
 
