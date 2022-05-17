@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import { container } from 'theme/shared';
-import { WithBaseColor } from 'lib/storyblok/storyblok.types';
-import { getColor } from 'lib/storyblok/storyblok.helpers';
 import { SbImage } from 'components/sbImage/SbImage';
 
 import { ImagePosition } from './IllustrationTextSection.types';
@@ -65,18 +63,19 @@ export const ContainerStyled = styled.div<{ $imgPosition: ImagePosition }>`
   }
 `;
 
-export const WrapperStyled = styled.section<WithBaseColor>`
+export const WrapperStyled = styled.section`
   display: flex;
   align-items: center;
-  background: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.white};
+  background: ${({ theme }) => theme.colors.white};
 `;
 
-export const TitleStyled = styled.div<WithBaseColor>`
+export const TitleStyled = styled.div`
   font-size: 3.2rem;
   width: 100%;
   line-height: 1.3;
   text-align: inherit;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.lightBlack};
+  font-family: 'Comic Sans MS', sans-serif;
+  color: ${({ theme }) => theme.colors.lightBlack};
 `;
 
 export const ImageStyled = styled(SbImage)`
@@ -98,10 +97,10 @@ export const TextWrapperStyled = styled.div`
   width: 100%;
 `;
 
-export const DescriptionStyled = styled.div<WithBaseColor>`
+export const DescriptionStyled = styled.div`
   font-size: 1.8rem;
   line-height: 1.4;
   text-align: inherit;
   width: 100%;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.lightBlack};
+  color: ${({ theme }) => theme.colors.lightBlack};
 `;

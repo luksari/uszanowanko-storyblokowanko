@@ -11,11 +11,8 @@ export enum ImagePosition {
 
 export type SbIllustrationTextSectionConfig = {
   section_id: string;
-  section_background: string;
   title_content: StoryblokRichtext;
-  title_color: string;
   description_content: StoryblokRichtext;
-  description_color: string;
   image_position: ImagePosition;
   image: MaybeSbAsset;
 };

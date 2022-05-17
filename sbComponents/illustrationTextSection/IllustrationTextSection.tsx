@@ -16,15 +16,15 @@ import { IllustrationTextSectionProps } from './IllustrationTextSection.types';
 
 export const IllustrationTextSection = ({ blok, ...rest }: IllustrationTextSectionProps) => {
   return (
-    <WrapperStyled {...rest} id={blok.section_id} $baseColor={blok.section_background}>
+    <WrapperStyled {...rest} id={blok.section_id}>
       <ContainerStyled $imgPosition={blok.image_position}>
         <TextWrapperStyled>
           {!isRichTextEmpty(blok.title_content) && (
-            <TitleStyled $baseColor={blok.title_color}>
+            <TitleStyled>
               <RichText content={blok.title_content} />
             </TitleStyled>
           )}
-          <DescriptionStyled $baseColor={blok.description_color}>
+          <DescriptionStyled>
             <RichText content={blok.description_content} />
           </DescriptionStyled>
         </TextWrapperStyled>
