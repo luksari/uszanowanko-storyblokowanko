@@ -4,8 +4,6 @@ import { useRouter } from 'next/router';
 
 import { useStoryblokContext } from '@/hooks/useStoryblokContext/useStoryblokContext';
 import { HelmetProps } from '@/components/helmet/Helmet.types';
-import { storyblokToi18nMap } from '@/i18n/i18n.utils';
-import { SbLanguage } from '@/lib/storyblok/storyblok.types';
 
 export const Helmet = ({}: HelmetProps) => {
   const { story } = useStoryblokContext();
@@ -17,8 +15,6 @@ export const Helmet = ({}: HelmetProps) => {
   }
 
   const { keywords, metaplugin } = seo;
-
-  const lang = storyblokToi18nMap[(story?.lang as SbLanguage) ?? SbLanguage.Pl];
 
   return (
     <RHHelmet title={`Uszanowanko Storyblokowanko - ${metaplugin.title}`}>

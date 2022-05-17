@@ -40,12 +40,6 @@ export const SectionStyled = styled.div`
   }
 `;
 
-export const SocialSection = styled(SectionStyled)`
-  ${({ theme }) => theme.breakpoints.mq.min.md} {
-    margin-right: 0;
-  }
-`;
-
 export const CopyTextStyled = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-size: 11px;

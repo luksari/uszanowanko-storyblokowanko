@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTranslations } from 'hooks/useTranslations/useTranslations';
 
-import { WrapperStyled, SectionStyled, ContainerStyled, SocialSection, CopyTextStyled } from './Footer.styles';
+import { WrapperStyled, SectionStyled, ContainerStyled, CopyTextStyled } from './Footer.styles';
 
 export const Footer = () => {
   const { t } = useTranslations();
@@ -11,6 +11,7 @@ export const Footer = () => {
       <ContainerStyled>
         <SectionStyled>
           <CopyTextStyled>Uszanowanko Programowanko &copy; {new Date().getFullYear()}</CopyTextStyled>
+          <CopyTextStyled>{t('footer.allRights')}</CopyTextStyled>
         </SectionStyled>
       </ContainerStyled>
     </WrapperStyled>

@@ -1,5 +1,6 @@
-import pl from 'i18n/translations/default.json';
-import {ReactNode} from "react";
+import { ReactNode } from 'react';
+
+import pl from '@/i18n/translations/pl.json';
 
 export type Translations = typeof pl;
 
@@ -11,4 +12,4 @@ export type TranslationsContextState = {
 
 export type TranslationsContextControllerProps = {
   children: ReactNode;
-}
+};
