@@ -1,27 +1,25 @@
 import styled, { css } from 'styled-components';
 
-import { WithBaseColor } from 'lib/storyblok/storyblok.types';
-import { getColor } from 'lib/storyblok/storyblok.helpers';
 import { ImagePosition } from 'sbComponents/smallIllustrationTextGrid/SmallIllustrationTextGrid.types';
 import { SbImage } from 'components/sbImage/SbImage';
 
-export const TitleStyled = styled.div<WithBaseColor>`
+export const TitleStyled = styled.div`
   font-size: 1.8rem;
   line-height: 1.3;
   font-family: ${({ theme }) => theme.fontFamily.azo};
   margin: 0 0 4px;
   width: 100%;
   text-align: inherit;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-export const DescriptionStyled = styled.div<WithBaseColor>`
+export const DescriptionStyled = styled.div`
   font-size: 1.6rem;
   line-height: 1.5;
   margin: 0;
   width: 100%;
   text-align: inherit;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const defaultTextWrapperStyles = css`
@@ -48,8 +46,10 @@ const defaultImageStyles = css`
 
 export const ImageWrapperStyled = styled.div`
   ${defaultImageStyles};
-
+  position: relative;
   display: flex;
+  aspect-ratio: 1/1;
+  height: auto;
   min-width: 200px;
   width: 200px;
   align-items: center;

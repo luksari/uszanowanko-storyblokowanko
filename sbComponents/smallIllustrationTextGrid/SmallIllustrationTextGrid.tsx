@@ -19,7 +19,7 @@ export const SmallIllustrationTextGrid = ({ blok, ...rest }: SmallIllustrationTe
   const { getSbEditableComponent } = useSbEditableComponent(componentsMap);
 
   return (
-    <WrapperStyled {...rest} id={blok.section_id} style={{ background: blok.section_background }}>
+    <WrapperStyled {...rest} id={blok.section_id}>
       <ContainerStyled>
         <ListStyled $columns={blok.columns} $areItemsCentered={blok.image_position === ImagePosition.AboveTheText}>
           {blok.elements.map((elem) =>

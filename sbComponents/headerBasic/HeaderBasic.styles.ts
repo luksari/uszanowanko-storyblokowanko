@@ -52,9 +52,10 @@ export const ContainerStyled = styled.div<WithImage>`
 `;
 
 export const ImageWrapperStyled = styled.div`
-  width: 100%;
-  max-width: 520px;
+  position: relative;
   margin-bottom: 24px;
+  width: 320px;
+  height: 222px;
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     margin-bottom: 0;
@@ -62,10 +63,7 @@ export const ImageWrapperStyled = styled.div`
   }
 `;
 
-export const ImageStyled = styled(SbImage)`
-  display: block;
-  width: 100%;
-`;
+export const ImageStyled = styled(SbImage)``;
 
 export const TitleStyled = styled.div<WithImage>`
   display: block;

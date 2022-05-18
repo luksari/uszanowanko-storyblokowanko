@@ -6,7 +6,6 @@ import {
 
 export type SbModuleIconGridConfig = {
   section_id: string;
-  section_background: string;
   columns: number;
   side_padding: number;
   elements: SbBlok<AllowedComponent, SbModuleIconElementConfig, AllowedComponent>[];

@@ -3,6 +3,7 @@ import React from 'react';
 import { RichText } from 'components/richText/RichText';
 import { isRichTextEmpty } from 'lib/storyblok/storyblok.helpers';
 import { isCorrectImageAsset } from 'lib/storyblok/storyblok.typeguards';
+import { SbImage } from '@/components/sbImage/SbImage';
 
 import {
   ContainerStyled,
@@ -10,7 +11,7 @@ import {
   TextWrapperStyled,
   TitleStyled,
   DescriptionStyled,
-  ImageStyled,
+  ImageWrapperStyled,
 } from './IllustrationTextSection.styles';
 import { IllustrationTextSectionProps } from './IllustrationTextSection.types';
 
@@ -28,7 +29,11 @@ export const IllustrationTextSection = ({ blok, ...rest }: IllustrationTextSecti
             <RichText content={blok.description_content} />
           </DescriptionStyled>
         </TextWrapperStyled>
-        {isCorrectImageAsset(blok.image) && <ImageStyled src={blok.image.filename} alt={blok.image.alt} />}
+        {isCorrectImageAsset(blok.image) && (
+          <ImageWrapperStyled>
+            <SbImage src={blok.image.filename} alt={blok.image.alt} />
+          </ImageWrapperStyled>
+        )}
       </ContainerStyled>
     </WrapperStyled>
   );

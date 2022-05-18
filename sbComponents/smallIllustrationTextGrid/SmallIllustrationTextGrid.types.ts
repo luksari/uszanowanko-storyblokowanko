@@ -7,7 +7,6 @@ import {
 
 export type SbSmallIllustrationTextGridConfig = {
   section_id: string;
-  section_background: string;
   image_position: ImagePosition;
   columns: number;
   elements: SbBlok<AllowedComponent, SbSmallIllustrationTextElementConfig, AllowedComponent>[];

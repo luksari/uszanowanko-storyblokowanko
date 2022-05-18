@@ -78,12 +78,13 @@ export const TitleStyled = styled.div`
   color: ${({ theme }) => theme.colors.lightBlack};
 `;
 
-export const ImageStyled = styled(SbImage)`
-  display: block;
+export const ImageWrapperStyled = styled.div`
   width: 220px;
+  height: 180px;
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     width: 264px;
+    height: 200px;
   }
 `;
 

@@ -6,9 +6,7 @@ import { ImagePosition } from 'sbComponents/smallIllustrationTextGrid/SmallIllus
 export type SbSmallIllustrationTextElementConfig = {
   image: MaybeSbAsset;
   title_content: StoryblokRichtext;
-  title_color: string;
   description_content: StoryblokRichtext;
-  description_color: string;
 };
 
 export type SmallIllustrationTextElementOwnProps = {

@@ -10,7 +10,6 @@ import { StoryblokClient } from '@/lib/storyblok/storyblok.types';
 
 const sb: any = storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_SB_PREVIEW_TOKEN,
-  bridge: process.env.NODE_ENV !== 'production',
   use: [apiPlugin] as any,
   apiOptions: {
     cache: {

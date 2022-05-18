@@ -16,7 +16,7 @@ export const ModuleIconGrid = ({ blok, ...rest }: ModuleIconGridProps) => {
   const { getSbEditableComponent } = useSbEditableComponent(componentsMap);
 
   return (
-    <WrapperStyled {...rest} id={blok.section_id} style={{ background: blok.section_background }}>
+    <WrapperStyled {...rest} id={blok.section_id}>
       <ContainerStyled $sidePadding={Number(blok.side_padding)}>
         <ListStyled $columns={blok.columns}>{blok.elements.map((elem) => getSbEditableComponent(elem))}</ListStyled>
       </ContainerStyled>

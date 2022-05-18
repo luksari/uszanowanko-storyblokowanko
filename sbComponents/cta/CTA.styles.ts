@@ -45,11 +45,13 @@ export const ContainerStyled = styled.div<{ $imagePosition: ImagePosition }>`
 `;
 
 export const ImageWrapperStyled = styled.div`
-  min-width: 288px;
-  width: 0;
+  position: relative;
+  width: 288px;
+  height: 200px;
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     min-width: 350px;
+    height: 260px;
   }
 `;
 

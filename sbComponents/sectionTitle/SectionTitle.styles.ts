@@ -19,7 +19,7 @@ export const ContainerStyled = styled.div`
   }
 `;
 
-export const TitleStyled = styled.div<WithBaseColor>`
+export const TitleStyled = styled.div`
   font-family: ${({ theme }) => theme.fontFamily.azo};
 
   margin: 5px 0 0;
@@ -30,14 +30,14 @@ export const TitleStyled = styled.div<WithBaseColor>`
   font-weight: 400;
   line-height: 1.25;
 
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     font-size: 32px;
   }
 `;
 
-export const SubTitleStyled = styled.div<WithBaseColor>`
+export const SubTitleStyled = styled.div`
   margin: 20px 0 0;
 
   text-align: center;
@@ -45,7 +45,7 @@ export const SubTitleStyled = styled.div<WithBaseColor>`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     font-size: 18px;

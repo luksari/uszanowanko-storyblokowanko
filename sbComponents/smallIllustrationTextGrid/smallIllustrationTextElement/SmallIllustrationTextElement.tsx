@@ -21,12 +21,12 @@ export const SmallIllustrationTextElement = ({ blok, imagePosition, ...rest }: S
       <ContentWrapperStyled>
         <TextWrapperStyled>
           {!isRichTextEmpty(blok.title_content) && (
-            <TitleStyled $baseColor={blok.title_color}>
+            <TitleStyled>
               <RichText content={blok.title_content} />
             </TitleStyled>
           )}
           {!isRichTextEmpty(blok.description_content) && (
-            <DescriptionStyled $baseColor={blok.description_color}>
+            <DescriptionStyled>
               <RichText content={blok.description_content} />
             </DescriptionStyled>
           )}

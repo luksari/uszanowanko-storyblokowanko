@@ -1,29 +1,27 @@
 import styled, { css } from 'styled-components';
 
-import { WithBaseColor } from 'lib/storyblok/storyblok.types';
-import { getColor } from 'lib/storyblok/storyblok.helpers';
 import { SbImage } from 'components/sbImage/SbImage';
 
-export const TitleStyled = styled.div<WithBaseColor>`
+export const TitleStyled = styled.div`
   font-size: 1.8rem;
   line-height: 1.25;
   font-family: ${({ theme }) => theme.fontFamily.azo};
   width: 100%;
   text-align: inherit;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     font-size: 2.1rem;
   }
 `;
 
-export const DescriptionStyled = styled.div<WithBaseColor<{ $isDescriptionOnly: boolean }>>`
+export const DescriptionStyled = styled.div<{ $isDescriptionOnly: boolean }>`
   font-size: 1.4rem;
   line-height: 1.35;
   margin: 0;
   width: 100%;
   text-align: inherit;
-  color: ${({ theme, $baseColor }) => getColor($baseColor) ?? theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 
   ${({ theme }) => theme.breakpoints.mq.min.md} {
     line-height: 1.5;
@@ -49,6 +47,7 @@ export const TextWrapperStyled = styled.div`
 `;
 
 export const ImageWrapperStyled = styled.div`
+  position: relative;
   display: flex;
   min-width: 120px;
   width: 120px;

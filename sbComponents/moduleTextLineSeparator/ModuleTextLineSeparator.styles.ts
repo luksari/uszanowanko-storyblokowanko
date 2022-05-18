@@ -20,7 +20,7 @@ export const ContainerStyled = styled.div`
   }
 `;
 
-export const ParagraphWrapperStyled = styled.div<{ $separatorColor?: string }>`
+export const ParagraphWrapperStyled = styled.div`
   font-size: 1.6rem;
   line-height: 1.4;
   text-align: center;
@@ -34,7 +34,7 @@ export const ParagraphWrapperStyled = styled.div<{ $separatorColor?: string }>`
   &::before {
     content: '';
     height: 1px;
-    background: ${({ $separatorColor }) => $separatorColor};
+    background: ${({ theme }) => theme.colors.black};
     flex: 1 0 auto;
   }
 `;

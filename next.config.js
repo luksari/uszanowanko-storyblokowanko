@@ -11,6 +11,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['a.storyblok.com'],
+  },
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.svg$/,

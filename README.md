@@ -32,3 +32,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Development
+In order to run app in `localhost:3010` you need to add a localhost cert that will enable https on your `localhost`
+```
+
+$ brew install mkcert
+$ mkcert -install
+$ mkcert localhost
+
+$ npm install -g local-ssl-proxy
+```
+You need to run below command in root each time you want to see live preview in Storyblok
+```
+$ local-ssl-proxy --source 3010 --target 8080 --cert localhost.pem --key localhost-key.pem
+```
+
+

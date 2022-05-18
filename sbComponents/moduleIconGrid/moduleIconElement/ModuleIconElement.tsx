@@ -25,12 +25,12 @@ export const ModuleIconElement = ({ blok, ...rest }: ModuleIconElementProps) => 
       <ContentWrapperStyled $isDescriptionOnly={isDescriptionOnly}>
         <TextWrapperStyled>
           {!isRichTextEmpty(blok.title_content) && (
-            <TitleStyled $baseColor={blok.title_color}>
+            <TitleStyled>
               <RichText content={blok.title_content} />
             </TitleStyled>
           )}
           {!isRichTextEmpty(blok.description_content) && (
-            <DescriptionStyled $isDescriptionOnly={isDescriptionOnly} $baseColor={blok.description_color}>
+            <DescriptionStyled $isDescriptionOnly={isDescriptionOnly}>
               <RichText content={blok.description_content} />
             </DescriptionStyled>
           )}

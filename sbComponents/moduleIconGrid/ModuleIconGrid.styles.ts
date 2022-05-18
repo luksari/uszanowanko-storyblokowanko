@@ -11,10 +11,14 @@ import { WrapperStyled as ChildWrapper } from './moduleIconElement/ModuleIconEle
 const getStylesForColumns = (columns: number) => {
   if (columns > 1) {
     return css`
-      display: grid;
-      grid-template-columns: repeat(${columns}, 500px);
       align-items: center;
+      justify-content: space-between;
       gap: 32px 40px;
+
+      ${ChildWrapper} {
+        width: 100%;
+        max-width: calc(${100 / columns}% - 90px);
+      }
     `;
   }
   return css`
