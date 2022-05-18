@@ -23,11 +23,6 @@ const addStyles = () => ({
   templateFile: 'plop/templates/SbComponent.styles.hbs',
 });
 
-const addTests = () => ({
-  type: 'add',
-  path: 'sbComponents/{{camelCase name}}/{{pascalCase name}}.test.tsx',
-  templateFile: 'plop/templates/SbComponent.test.hbs',
-});
 
 const modifyTypesToIncludeNewComponent = () => ({
   type: 'modify',
@@ -53,7 +48,6 @@ const modifyComponentsMapToIncludeNewComponent = () => ({
 export const action = {
   addComponent,
   addTypes,
-  addTests,
   addStyles,
   modifyTypesToIncludeNewComponent,
   modifyComponentsMapToIncludeNewComponentImport,

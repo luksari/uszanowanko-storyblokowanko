@@ -15,7 +15,6 @@ const registerPlop = (plop) => {
       action.addComponent(),
       action.addTypes(),
       action.addStyles(),
-      action.addTests(),
       action.modifyTypesToIncludeNewComponent(),
       action.modifyComponentsMapToIncludeNewComponentImport(),
       action.modifyComponentsMapToIncludeNewComponent(),

@@ -8,7 +8,6 @@ import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 import { PreviewPage } from '@/templates/PreviewPage';
 import { useLocale } from '@/hooks/useLocale/useLocale';
 import { removeRootAndLocaleCatalog, removeRootCatalog } from '@/lib/storyblok/link/link.utils';
-
 import { getAllStories, getLinks } from '@/integration/stories/stories';
 
 const SluggedPage = (props: PageProps) => {
