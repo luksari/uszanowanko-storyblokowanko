@@ -23,7 +23,6 @@ export type SbComponentName =
   | 'module-text-line-separator'
   | 'module-button'
   | 'module-icon-grid'
-  | 'illustration-text-section'
   | 'cta'
   | 'spacing'
   | 'my-new-module';
