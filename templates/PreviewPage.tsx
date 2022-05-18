@@ -9,10 +9,10 @@ import { PageProps } from '@/types/page';
 
 export const PreviewPage = (props: PageProps) => {
   const { setLocale } = useLocale();
-  const [story, setStory] = useState<SbPageModel>(props.story);
+  const [story, setStory] = useState<SbPageModel | null>(props.story);
 
   /** @TODO Refactor */
-  useStoryblokBridge(story.id, (story) => {
+  useStoryblokBridge(story?.id || 0, (story) => {
     setStory(story as any);
     // '' empty string is default language
     setLocale(storyblokToi18nMap[(story.lang || SbLanguage.Pl) as SbLanguage]);

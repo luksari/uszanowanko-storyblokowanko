@@ -4,7 +4,7 @@ import { SbLinkModel, SbPageModel } from '@/lib/storyblok/storyblok.types';
 import { AlternativeSlugs, I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 
 export type PageProps = {
-  story: SbPageModel;
+  story: SbPageModel | null;
   key: number;
   alternativeSlugs: AlternativeSlugs | null;
   locale: I18nLanguage;

@@ -4,6 +4,6 @@ import { SbLinkModel, SbPageModel } from '@/lib/storyblok/storyblok.types';
 
 export type LayoutProps = {
   children: ReactNode;
-  story: SbPageModel;
+  story: SbPageModel | null;
   links: SbLinkModel[];
 };

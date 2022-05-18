@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
   const { data: linksData } = await getLinks();
   const { slug: slugArr } = params as PageParams;
 
-  const joinedSlug = slugArr?.join('/');
+  const joinedSlug = slugArr?.join('/') || '';
   const slugWithLocale = locale === I18nLanguage.Pl ? `${root}/${joinedSlug}` : `${locale}/${root}/${joinedSlug}`;
 
   const story = storiesData.stories.find((story) => {
