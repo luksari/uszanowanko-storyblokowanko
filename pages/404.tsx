@@ -1,10 +1,11 @@
 import { GetStaticProps } from 'next';
 
 import { PageParams, PageProps } from '@/types/page';
-import { getLinks } from '@/services/storyblok/storyblok';
 import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 import { removeRootCatalog } from '@/lib/storyblok/link/link.utils';
 import { NotFound } from '@/containers/404/404';
+
+import { getLinks } from '@/integration/stories/stories';
 
 export default (props: PageProps) => {
   return <NotFound {...props} />;

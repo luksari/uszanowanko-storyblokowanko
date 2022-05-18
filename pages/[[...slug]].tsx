@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 
 import { PageParams, PageProps } from '@/types/page';
 import { AppPage } from '@/templates/AppPage';
-import { getAllStories, getLinks } from '@/services/storyblok/storyblok';
 import { i18nToStoryblokMap, storyblokToi18nMap } from '@/i18n/i18n.utils';
 import { I18nLanguage } from '@/context/localeContext/LocaleContext.types';
 import { PreviewPage } from '@/templates/PreviewPage';
 import { useLocale } from '@/hooks/useLocale/useLocale';
 import { removeRootAndLocaleCatalog, removeRootCatalog } from '@/lib/storyblok/link/link.utils';
+
+import { getAllStories, getLinks } from '@/integration/stories/stories';
 
 const SluggedPage = (props: PageProps) => {
   const { setAltSlugs, setLocale } = useLocale();
