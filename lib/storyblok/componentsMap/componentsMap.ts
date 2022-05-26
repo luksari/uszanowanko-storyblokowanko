@@ -1,3 +1,4 @@
+import { IllustrationTextSection } from 'sbComponents/illustrationTextSection/IllustrationTextSection';
 import { SmallIllustrationTextGrid } from '@/sbComponents/smallIllustrationTextGrid/SmallIllustrationTextGrid';
 import { SectionTitle } from '@/sbComponents/sectionTitle/SectionTitle';
 import { SbComponentsMap } from '@/lib/storyblok/storyblok.types';
@@ -11,6 +12,7 @@ import { HeaderBasic } from '@/sbComponents/headerBasic/HeaderBasic';
 
 /** This is the map of Storyblok technical names with corresponding React component */
 export const sbRootComponents: SbComponentsMap = {
+  'illustration-text-section': IllustrationTextSection,
   'header-basic': HeaderBasic,
   'section-title': SectionTitle,
   'small-illustration-text-grid': SmallIllustrationTextGrid,

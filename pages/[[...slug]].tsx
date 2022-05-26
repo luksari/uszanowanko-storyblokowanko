@@ -32,6 +32,7 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
 }) => {
   const root = process.env.NEXT_PUBLIC_APP_CATALOG;
 
+  /** @TODO Refactor to get the data of all stories from cache, cache will be set in getStaticPaths */
   const { data: storiesData } = await getAllStories(i18nToStoryblokMap[locale as I18nLanguage]);
   const { data: linksData } = await getLinks();
   const { slug: slugArr } = params as PageParams;

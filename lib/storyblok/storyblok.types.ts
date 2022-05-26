@@ -17,6 +17,7 @@ import { AxiosInstance } from 'axios';
 
 /** @SEE The list of defined components in storyblok */
 export type SbComponentName =
+  | 'illustration-text-section'
   | 'header-basic'
   | 'section-title'
   | 'small-illustration-text-grid'
